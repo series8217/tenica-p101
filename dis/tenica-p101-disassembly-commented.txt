@@ -1,0 +1,2906 @@
+--------------------------------------------------
+Z80 DISASSEMBLER LISTING
+Line   Addr Opcodes     Label   Instruction
+--------------------------------------------------
+
+0001   0000 F3                  DI		;disable interrupts
+0002   0001 31 FF 17            LD SP,17FFH	; initialize the stack
+0003   0004 C3 44 03            JP L0001	; jump to start routine
+0004   0007 3E AA       L0033:  LD A,0AAH
+0005   0009 32 A8 16            LD (16A8H),A
+0006   000C 32 A9 16            LD (16A9H),A
+0007   000F 00                  NOP
+0008   0010 3E 06       L0002:  LD A,06H
+0009   0012 32 E7 17            LD (17E7H),A
+0010   0015 21 E7 17    L0007:  LD HL,17E7H
+0011   0018 7E                  LD A,(HL)
+0012   0019 FE FF               CP 0FFH
+0013   001B 28 F3               JR Z,L0002
+0014   001D 3A E7 17            LD A,(17E7H)
+0015   0020 E6 07               AND 07H
+0016   0022 D3 04               OUT (04H),A
+0017   0024 11 00 20            LD DE,2000H
+0018   0027 01 60 00            LD BC,0060H
+0019   002A 21 80 17            LD HL,1780H
+0020   002D ED B0               LDIR
+0021   002F 3A E7 17            LD A,(17E7H)
+0022   0032 F6 08               OR 08H
+0023   0034 D3 04               OUT (04H),A
+0024   0036 18 03               JR L0003
+0025   0038 FF                  RST 38H
+0026   0039 FF                  RST 38H
+0027   003A FF                  RST 38H
+0028   003B DB 08       L0003:  IN A,(08H)
+0029   003D FE FF               CP 0FFH
+0030   003F C2 D7 0E            JP NZ,L0004
+0031   0042 06 4F               LD B,4FH
+0032   0044 10 FE       L0005:  DJNZ L0005
+0033   0046 C3 FD 0E            JP L0006
+0034   0049 06 21               LD B,21H
+0035   004B E7                  RST 20H
+0036   004C 17                  RLA
+0037   004D 35                  DEC (HL)
+0038   004E 18 C5               JR L0007
+0039   0050 32 E1 17            LD (17E1H),A
+0040   0053 3E 00       L0248:  LD A,00H
+0041   0055 D3 04               OUT (04H),A
+0042   0057 21 E1 17            LD HL,17E1H
+0043   005A 06 08               LD B,08H
+0044   005C 0E 00               LD C,00H
+0045   005E 37                  SCF
+0046   005F CB 1E       L0009:  RR (HL)
+0047   0061 30 03               JR NC,L0008
+0048   0063 0C                  INC C
+0049   0064 10 F9               DJNZ L0009
+0050   0066 21 E8 17    L0008:  LD HL,17E8H
+0051   0069 71                  LD (HL),C
+0052   006A 3A E7 17            LD A,(17E7H)
+0053   006D 87                  ADD A,A
+0054   006E 87                  ADD A,A
+0055   006F 87                  ADD A,A
+0056   0070 21 E8 17            LD HL,17E8H
+0057   0073 86                  ADD A,(HL)
+0058   0074 FE 26               CP 26H
+0059   0076 FA 82 00            JP M,L0010
+0060   0079 C3 60 0D            JP L0011
+0061   007C 26 00       L0215:  LD H,00H
+0062   007E 6E                  LD L,(HL)
+0063   007F 26 01               LD H,01H
+0064   0081 E9                  JP (HL)
+0065   0082 CD 90 00    L0010:  CALL L0012
+0066   0085 3E FF       L0044:  LD A,0FFH
+0067   0087 32 E1 17            LD (17E1H),A
+0068   008A CD 80 0D            CALL L0013
+0069   008D C3 0B 0F            JP L0014
+0070   0090 40          L0012:  LD B,B
+0071   0091 0A                  LD A,(BC)
+0072   0092 FA 99 00            JP M,L0015
+0073   0095 CD B1 00            CALL L0016
+0074   0098 C9                  RET
+0075   0099 CD C1 00    L0015:  CALL L0017
+0076   009C C6 10               ADD A,10H
+0077   009E 21 6F 17            LD HL,176FH
+0078   00A1 77                  LD (HL),A
+0079   00A2 3A EA 17            LD A,(17EAH)
+0080   00A5 FE 00               CP 00H
+0081   00A7 20 04       L0020:  JR NZ,L0018
+0082   00A9 3E 20               LD A,20H
+0083   00AB 86                  ADD A,(HL)
+0084   00AC 77                  LD (HL),A
+0085   00AD CD D2 00    L0018:  CALL L0019
+0086   00B0 C9                  RET
+0087   00B1 CD C1 00    L0016:  CALL L0017
+0088   00B4 C6 37               ADD A,37H
+0089   00B6 21 6F 17            LD HL,176FH
+0090   00B9 77                  LD (HL),A
+0091   00BA 3A EA 17            LD A,(17EAH)
+0092   00BD FE FF               CP 0FFH
+0093   00BF 18 E6               JR L0020
+0094   00C1 01 0F 00    L0017:  LD BC,000FH
+0095   00C4 CD A2 02            CALL L0021
+0096   00C7 3A E7 17            LD A,(17E7H)
+0097   00CA 87                  ADD A,A
+0098   00CB 87                  ADD A,A
+0099   00CC 87                  ADD A,A
+0100   00CD 21 E8 17            LD HL,17E8H
+0101   00D0 86                  ADD A,(HL)
+0102   00D1 C9                  RET
+0103   00D2 3E 7F       L0019:  LD A,7FH
+0104   00D4 A6                  AND (HL)
+0105   00D5 77                  LD (HL),A
+0106   00D6 3A E2 17            LD A,(17E2H)
+0107   00D9 FE FF               CP 0FFH
+0108   00DB 20 04               JR NZ,L0022
+0109   00DD 3E 80               LD A,80H
+0110   00DF B6                  OR (HL)
+0111   00E0 77                  LD (HL),A
+0112   00E1 CD BC 02    L0022:  CALL *LOADCHARS*
+0113   00E4 C9                  RET
+0114   00E5 00                  NOP
+0115   00E6 1A                  LD A,(DE)
+0116   00E7 2B                  DEC HL
+0117   00E8 11 D8 D0            LD DE,0D0D8H
+0118   00EB 00                  NOP
+0119   00EC 86                  ADD A,(HL)
+0120   00ED F0                  RET P
+0121   00EE E0                  RET PO
+0122   00EF 41                  LD B,C
+0123   00F0 34                  INC (HL)
+0124   00F1 4E                  LD C,(HL)
+0125   00F2 00                  NOP
+0126   00F3 E3                  EX (SP),HL
+0127   00F4 00                  NOP
+0128   00F5 10 6A               DJNZ L0024
+0129   00F7 70                  LD (HL),B
+0130   00F8 FF                  RST 38H
+0131   00F9 FF                  RST 38H
+0132   00FA FF                  RST 38H
+0133   00FB FF                  RST 38H
+0134   00FC FF                  RST 38H
+0135   00FD FF                  RST 38H
+0136   00FE FF                  RST 38H
+0137   00FF FF                  RST 38H
+0138   0100 C3 1D 0E            JP L0025
+0139   0103 21 AA 16            LD HL,16AAH
+0140   0106 36 BF               LD (HL),0BFH
+0141   0108 23                  INC HL
+0142   0109 36 05               LD (HL),05H
+0143   010B C3 78 0D            JP L0026
+0144   010E FF                  RST 38H
+0145   010F FF                  RST 38H
+0146   0110 76                  HALT
+0147   0111 C3 38 06            JP L0027
+0148   0114 CD BC 02    L0185:  CALL *LOADCHARS*
+0149   0117 C3 78 0D            JP L0026
+0150   011A 01 1F 00            LD BC,001FH
+0151   011D CD A2 02            CALL L0021
+0152   0120 21 7F 17            LD HL,177FH
+0153   0123 36 20               LD (HL),20H
+0154   0125 CD BC 02            CALL *LOADCHARS*
+0155   0128 C3 78 0D            JP L0026
+0156   012B CD 62 02            CALL L0028
+0157   012E CD BC 02            CALL *LOADCHARS*
+0158   0131 C3 78 0D            JP L0026
+0159   0134 00                  NOP
+0160   0135 00                  NOP
+0161   0136 00                  NOP
+0162   0137 21 E5 17    L0040:  LD HL,17E5H
+0163   013A 34                  INC (HL)
+0164   013B CD 00 03            CALL L0029
+0165   013E C3 78 0C            JP L0030
+0166   0141 00                  NOP
+0167   0142 00                  NOP
+0168   0143 00                  NOP
+0169   0144 21 E5 17            LD HL,17E5H
+0170   0147 35                  DEC (HL)
+0171   0148 CD 00 03            CALL L0029
+0172   014B C3 78 0D            JP L0026
+0173   014E 06 20       L0255:  LD B,20H
+0174   0150 21 60 17            LD HL,1760H
+0175   0153 3A E9 17            LD A,(17E9H)
+0176   0156 FE FF               CP 0FFH
+0177   0158 20 05               JR NZ,L0031
+0178   015A 06 11               LD B,11H
+0179   015C 21 6F 17            LD HL,176FH
+0180   015F 36 20       L0031:  LD (HL),20H
+0181   0161 23          L0024:  INC HL
+0182   0162 10 FB               DJNZ L0031
+0183   0164 CD BC 02            CALL *LOADCHARS*
+0184   0167 C3 78 0D            JP L0026
+0185   016A CD 7B 02            CALL *CLEARMEM*
+0186   016D C3 07 00            JP L0033
+0187   0170 2E FF               LD L,0FFH
+0188   0172 32 E9 17            LD (17E9H),A
+0189   0175 C3 12 0F            JP L0034
+0190   0178 11 60 17    L0250:  LD DE,1760H
+0191   017B 01 0F 00            LD BC,000FH
+0192   017E ED B0               LDIR
+0193   0180 CD BC 02            CALL *LOADCHARS*
+0194   0183 C3 78 0D            JP L0026
+0195   0186 3A E9 17            LD A,(17E9H)
+0196   0189 FE 00               CP 00H
+0197   018B 28 12               JR Z,L0035
+0198   018D 3A A6 16            LD A,(16A6H)
+0199   0190 FE FF               CP 0FFH
+0200   0192 CA 10 0E            JP Z,L0036
+0201   0195 C3 01 0E            JP L0037
+0202   0198 00                  NOP
+0203   0199 AF          L0230:  XOR A
+0204   019A 32 E9 17            LD (17E9H),A
+0205   019D 18 17               JR L0038
+0206   019F 3A E5 17    L0035:  LD A,(17E5H)
+0207   01A2 FE FF               CP 0FFH
+0208   01A4 28 10               JR Z,L0038
+0209   01A6 FE 64               CP 64H
+0210   01A8 28 0C               JR Z,L0038
+0211   01AA CD 30 02            CALL L0039
+0212   01AD EB                  EX DE,HL
+0213   01AE 01 10 00            LD BC,0010H
+0214   01B1 21 60 17            LD HL,1760H
+0215   01B4 ED B0               LDIR
+0216   01B6 C3 37 01    L0038:  JP L0040
+0217   01B9 00                  NOP
+0218   01BA 00                  NOP
+0219   01BB 00                  NOP
+0220   01BC 00                  NOP
+0221   01BD 00                  NOP
+0222   01BE 00                  NOP
+0223   01BF 00                  NOP
+0224   01C0-01CC		" DISPLAY MODE"
+0235   01CD 72                  LD (HL),D
+0236   01CE 20 20               JR NZ,L0043
+0237   01D0 21 E2 17            LD HL,17E2H
+0238   01D3 36 FF               LD (HL),0FFH
+0239   01D5 C3 78 0D            JP L0026
+0240   01D8 21 EA 17            LD HL,17EAH
+0241   01DB 36 FF               LD (HL),0FFH
+0242   01DD C3 85 00            JP L0044
+0243   01E0 C3 00 0D            JP L0045
+0244   01E3 C3 80 0C    L0223:  JP L0046
+0245   01E6 3A E5 17            LD A,(17E5H)
+0246   01E9 32 E4 17            LD (17E4H),A
+0247   01EC C3 78 0D            JP L0026
+0248   01EF FF                  RST 38H
+0249   01F0 C3 2D 0D    L0043:  JP L0047
+0250   01F3 21 E4 17    L0211:  LD HL,17E4H
+0251   01F6 BE                  CP (HL)
+0252   01F7 FA 01 02            JP M,L0048
+0253   01FA 96                  SUB (HL)
+0254   01FB 32 A7 16            LD (16A7H),A
+0255   01FE C3 24 0D            JP L0049
+0256   0201 3E 64       L0048:  LD A,64H
+0257   0203 96                  SUB (HL)
+0258   0204 21 E5 17            LD HL,17E5H
+0259   0207 86                  ADD A,(HL)
+0260   0208 32 A7 16            LD (16A7H),A
+0261   020B C3 24 0D            JP L0049
+0262   020E 00                  NOP
+0263   020F 00                  NOP
+0264   0210-021E		"  pp START pp   "
+0276   0220-022F		"  pp FINAL pp   "
+0286   0230 21                  			; ?????
+0287   0231 00                  NOP
+0288   0232 10 3A       L0050:  DJNZ L0060
+0289   0234 E5                  PUSH HL
+0290   0235 17                  RLA
+0291   0236 FE 00               CP 00H
+0292   0238 C8                  RET Z
+0293   0239 47                  LD B,A
+0294   023A 11 10 00            LD DE,0010H
+0295   023D 19          L0061:  ADD HL,DE
+0296   023E 10 FD               DJNZ L0061
+0297   0240 81                  ADD A,C
+0298   0241 00          L0054:  NOP
+0299   0242 00                  NOP
+0300   0243 00                  NOP
+0301   0244 00                  NOP
+0302   0245 00                  NOP
+0303   0246 00                  NOP
+0304   0247 00                  NOP
+0305   0248 00                  NOP
+0306   0249 01 0F 00    L0184:  LD BC,000FH
+0307   024C 21 6E 17            LD HL,176EH
+0308   024F 11 6F 17    L0058:  LD DE,176FH
+0309   0252 3A E9 17    L0059:  LD A,(17E9H)
+0310   0255 FE FF               CP 0FFH
+0311   0257 20 03               JR NZ,L0062
+0312   0259 7E                  LD A,(HL)
+0313   025A 12                  LD (DE),A
+0314   025B C9                  RET
+0315   025C ED B8       L0062:  LDDR
+0316   025E 23                  INC HL
+0317   025F 36 20               LD (HL),20H
+0318   0261 C9                  RET
+0319   0262 01 1F 00    L0028:  LD BC,001FH
+0320   0265 21 7E 17            LD HL,177EH
+0321   0268 11 7F 17            LD DE,177FH
+0322   026B 3A E9 17            LD A,(17E9H)
+0323   026E FE FF               CP 0FFH
+0324   0270 20 03               JR NZ,L0063
+0325   0272 01 11 00            LD BC,0011H
+0326   0275 ED B8       L0063:  LDDR
+0327   0277 23                  INC HL
+0328   0278 36 20               LD (HL),20H
+0329   027A C9                  RET
+
+				; clear the first 256 bytes of RAM (RAM starts at $1000)
+0330   027B 21 00 10    *CLEARMEM*:  LD HL,1000H	; HL = $1000  (start memory address)
+0331   027E 01 07 00            LD BC,0007H	; B = $00 (counter for loop in *CLEAR*), C = $07  
+0332   0281 CD 83 0F    L0065:  CALL *CLEAR*	
+
+
+				; clear the next 256*7 bytes of RAM
+0333   0284 0D                  DEC C           
+0334   0285 20 FA               JR NZ,L0065	
+
+				; clear the next 236 bytes of RAM
+0335   0287 06 EC               LD B,0ECH	
+0336   0289 CD 83 0F            CALL *CLEAR*   
+
+				; load 64 bytes of memory with $30 starting at $1640
+0337   028C 21 40 16    L0052:  LD HL,1640H	; HL = $1640
+0338   028F 06 64               LD B,64H	; B = $64
+0339   0291 36 30       L0066:  LD (HL),30H	; load memory with $30
+0340   0293 23          L0055:  INC HL		; look at next address
+0341   0294 10 FB               DJNZ L0066	; repeat until B reaches zero (i.e. 64 times)
+0342   0296 3E 10               LD A,10H	; 
+0343   0298 32 C1 16            LD (16C1H),A	; ($16C1)=$10
+0344   029B 3E 42               LD A,42H	;
+0345   029D 32 E6 17            LD (17E6H),A	; ($17E6) = $42
+0346   02A0 C9                  RET
+0347   02A1 C9                  RET
+0348   02A2 21 61 17    L0021:  LD HL,1761H
+0349   02A5 11 60 17            LD DE,1760H
+0350   02A8 3A E9 17            LD A,(17E9H)
+0351   02AB FE FF               CP 0FFH
+0352   02AD 20 0A               JR NZ,L0067
+0353   02AF 3A 70 17            LD A,(1770H)
+0354   02B2 32 6F 17            LD (176FH),A
+0355   02B5 C9                  RET
+0356   02B6 00                  NOP
+0357   02B7 00                  NOP
+0358   02B8 00                  NOP
+0359   02B9 ED B0       L0067:  LDIR
+0360   02BB C9                  RET
+
+
+;-----------------------------------------------------------------------------------------
+;			DISPLAY CHARACTER
+;-----------------------------------------------------------------------------------------
+
+
+		; LOAD 16 CHARACTERS TO MEMORY AND LOAD CHARACTER DEFINITIONS TO MEMORY
+
+		; ENDS UP WITH:
+		; $1781-$1785 contains the character definition bytes for the first character in the string.
+		; a blank definition/LED arrangement is prefixed to the beginning of each character definition.
+		; so there is a $00 stored at $1780, $1786, $178C, etc... This is to provide spaces between 
+		; characters when they are displayed.
+		; ---------------------------------------------------------------------
+0361   02BC 06 00       *LOADCHARS*:  LD B,00H	; B = $00 (character counter)
+0362   02BE 11 80 17            LD DE,1780H	; DE = $1780
+0363   02C1 3E 60               LD A,60H	; A = $60
+0364   02C3 00                  NOP		
+0365   02C4 32 E0 17            LD (17E0H),A	; ($17E0) = $60 (or rather, %01100111)
+
+0366   02C7 AF          L0071:  XOR A		; XOR A with itself... A = %00000000
+0367   02C8 12                  LD (DE),A	; ($1780) = $00
+0368   02C9 1C                  INC E		; E = $81 (increases by 1 for each loop)
+0369   02CA 3A E0 17            LD A,(17E0H)	; A = $60 (increases by 1 for each loop)
+0370   02CD 6F                  LD L,A		; L = $60 (increases by 1 for each loop)
+0371   02CE 26 17               LD H,17H	; H = $17, HL = $1760*, where desired character of string is
+0372   02D0 7E                  LD A,(HL)	; A = desired character of string
+0373   02D1 6F                  LD L,A		; L = desired character of string
+
+0374   02D2 3E 00               LD A,00H	; A = $00
+0375   02D4 4F                  LD C,A		; C = $00
+0376   02D5 3E 08               LD A,08H	; A = $08
+0377   02D7 B1                  OR C		; OR A with C, A = $08
+0378   02D8 67                  LD H,A		; H = $08
+
+0379   02D9 7E          L0069:  LD A,(HL)	; A = one byte of character definition
+0380   02DA 12                  LD (DE),A	; load character definition byte to memory
+0381   02DB 79                  LD A,C		; A = C
+0382   02DC FE 04               CP 04H		; compare A to $04
+0383   02DE 28 05               JR Z,L0068	; 
+0384   02E0 0C                  INC C		; increment counter
+0385   02E1 24                  INC H		; increment upper byte of string address (by $100)
+0386   02E2 1C                  INC E		; increment location to store character definition
+0387   02E3 18 F4               JR L0069	; repeat until 5 character definition bytes have been stored
+
+
+0388   02E5 78          L0068:  LD A,B		; A = B (B gets incremented in part of this loop)
+0389   02E6 FE 0F               CP 0FH		; compare A to $0F
+0390   02E8 CA F4 02            JP Z,L0070	; if A = $0F jump to subroutine
+0391   02EB 04                  INC B		
+0392   02EC 21 E0 17            LD HL,17E0H	; HL = $17E0 (starting address)
+0393   02EF 34                  INC (HL)	; look at next character
+0394   02F0 1C                  INC E		; look at next character
+0395   02F1 C3 C7 02            JP L0071
+
+						; clear some memory
+0396   02F4 21 E2 17    L0070:  LD HL,17E2H	; HL = $17E2
+0397   02F7 36 00               LD (HL),00H	; ($17E2) = 00
+0398   02F9 21 EA 17            LD HL,17EAH	; HL = $17EA
+0399   02FC 36 00               LD (HL),00H	; ($17EA) = 00
+0400   02FE C9                  RET
+0401   02FF 00                  NOP
+
+
+
+
+0402   0300 3A E5 17    L0029:  LD A,(17E5H)
+0403   0303 FE FF               CP 0FFH
+0404   0305 28 14               JR Z,L0072
+0405   0307 FE 65               CP 65H
+0406   0309 28 15               JR Z,L0073
+0407   030B FE 64               CP 64H
+0408   030D 28 1B               JR Z,L0074
+0409   030F FE FE               CP 0FEH
+0410   0311 28 1C               JR Z,L0075
+0411   0313 21 00 10            LD HL,1000H
+0412   0316 CD 30 02            CALL L0039
+0413   0319 18 1C               JR L0076
+0414   031B 21 10 02    L0072:  LD HL,0210H
+0415   031E 18 17               JR L0076
+0416   0320 21 10 02    L0073:  LD HL,0210H
+0417   0323 3E FF               LD A,0FFH
+0418   0325 32 E5 17            LD (17E5H),A
+0419   0328 18 0D               JR L0076
+0420   032A 21 20 02    L0074:  LD HL,0220H
+0421   032D 18 08               JR L0076
+0422   032F 21 20 02    L0075:  LD HL,0220H
+0423   0332 3E 64               LD A,64H
+0424   0334 32 E5 17            LD (17E5H),A
+0425   0337 11 60 17    L0076:  LD DE,1760H
+0426   033A 01 10 00            LD BC,0010H
+0427   033D ED B0               LDIR
+0428   033F CD 24 02            CALL L0077
+0429   0342 C9                  RET
+0430   0343 00                  NOP
+0431   0344 CD 66 0E    L0001:  CALL *INIT*
+0432   0347 2A C0 16    L0079:  LD HL,(16C0H)
+0433   034A 22 C2 16            LD (16C2H),HL
+0434   034D 3A A7 16            LD A,(16A7H)
+0435   0350 32 E5 17            LD (17E5H),A
+0436   0353 3A A4 16    L0111:  LD A,(16A4H)
+0437   0356 32 A5 16            LD (16A5H),A
+0438   0359 3A E5 17    L0224:  LD A,(17E5H)
+0439   035C FE FF               CP 0FFH
+0440   035E 28 E7               JR Z,L0079
+0441   0360 21 40 16            LD HL,1640H
+0442   0363 3A A5 16            LD A,(16A5H)
+0443   0366 00                  NOP
+0444   0367 85                  ADD A,L
+0445   0368 6F                  LD L,A
+0446   0369 7E                  LD A,(HL)
+0447   036A FE 31               CP 31H
+0448   036C CA 55 05            JP Z,L0080
+0449   036F FE 32               CP 32H
+0450   0371 CA A2 03            JP Z,L0081
+0451   0374 FE 33               CP 33H
+0452   0376 CA 76 05            JP Z,L0082
+0453   0379 FE 34               CP 34H
+0454   037B CA BA 03            JP Z,L0083
+0455   037E FE 35               CP 35H
+0456   0380 8A                  ADC A,D
+0457   0381 D7                  RST 10H
+0458   0382 03                  INC BC
+0459   0383 C3 6D 05            JP L0084
+0460   0386 00                  NOP
+0461   0387 21 E5 17    L0094:  LD HL,17E5H
+0462   038A 35                  DEC (HL)
+0463   038B 21 A5 16            LD HL,16A5H
+0464   038E 34                  INC (HL)
+0465   038F 2A C2 16            LD HL,(16C2H)
+0466   0392 23                  INC HL
+0467   0393 7C                  LD A,H
+0468   0394 FE 16               CP 16H
+0469   0396 C2 E6 0D            JP NZ,L0085
+0470   0399 7D                  LD A,L
+0471   039A FE 40               CP 40H
+0472   039C C2 E6 0D            JP NZ,L0085
+0473   039F C3 DF 0D            JP L0086
+0474   03A2 CD 13 05    L0081:  CALL L0087
+0475   03A5 CD 64 07            CALL L0088
+0476   03A8 CD 8B 07            CALL L0089
+0477   03AB CD 82 05            CALL L0090
+0478   03AE CD 2B 07            CALL L0091
+0479   03B1 CD 49 05            CALL L0092
+0480   03B4 CD 07 05            CALL L0093
+0481   03B7 C3 87 03            JP L0094
+0482   03BA 3E 60       L0083:  LD A,60H
+0483   03BC 32 E3 17            LD (17E3H),A
+0484   03BF CD 13 05            CALL L0087
+0485   03C2 CD FD 05            CALL L0095
+0486   03C5 CD 8B 07            CALL L0089
+0487   03C8 CD 82 05            CALL L0090
+0488   03CB CD 2B 07            CALL L0091
+0489   03CE CD 49 05            CALL L0092
+0490   03D1 CD 4F 06            CALL L0096
+0491   03D4 C3 87 03            JP L0094
+0492   03D7 3E 60               LD A,60H
+0493   03D9 32 E3 17            LD (17E3H),A
+0494   03DC CD 13 05            CALL L0087
+0495   03DF CD 81 05            CALL L0097
+0496   03E2 CD 8B 07            CALL L0089
+0497   03E5 CD 82 05            CALL L0090
+0498   03E8 CD 2B 07            CALL L0091
+0499   03EB CD 49 05            CALL L0092
+0500   03EE CD 8F 06            CALL L0098
+0501   03F1 C3 87 03            JP L0094
+0502   03F4 FF                  RST 38H
+0503   03F5 28 02               JR Z,L0099
+0504   03F7 18 03               JR L0100
+0505   03F9 CD 2B 07    L0099:  CALL L0091
+0506   03FC 3A 03 13    L0100:  LD A,(1303H)
+0507   03FF FE 20               CP 20H
+0508   0401 20 66               JR NZ,L0101
+0509   0403 66                  LD H,(HL)
+0510   0404 20 53               JR NZ,L0102
+0511   0406 54                  LD D,H
+0512   0407 41                  LD B,C
+0513   0408 52                  LD D,D
+0514   0409 54                  LD D,H
+0515   040A 20 66               JR NZ,L0103
+0516   040C 66                  LD H,(HL)
+0517   040D 20 20               JR NZ,L0104
+0518   040F 20 20               JR NZ,L0105
+0519   0411 20 66               JR NZ,L0106
+0520   0413 66                  LD H,(HL)
+0521   0414 20 46               JR NZ,L0107
+0522   0416 49                  LD C,C
+0523   0417 4E                  LD C,(HL)
+0524   0418 41                  LD B,C
+0525   0419 4C                  LD C,H
+0526   041A 20 66               JR NZ,L0108
+0527   041C 66                  LD H,(HL)
+0528   041D 20 20               JR NZ,L0109
+0529   041F 20 02               JR NZ,L0110
+0530   0421 06 18               LD B,18H
+0531   0423 03          L0110:  INC BC
+0532   0424 CD 07 05            CALL L0093
+0533   0427 C3 53 03            JP L0111
+
+
+
+; ------------------------------------------------------------------------------------------------
+;           DISPLAY CHARACTER (COLUMN?)    (this part of the code is NASTY)
+; ------------------------------------------------------------------------------------------------
+0534   042A 3E 06       L0129:  LD A,06H	; A = %00000110
+0535   042C 32 E7 17            LD (17E7H),A	; ($17E7) = %00000110
+0536   042F D9          L0104:  EXX	        ; switch to prime registers
+0537   0430 21 E7 17            LD HL,17E7H	; HL' = $17E7
+0538   0433 7E                  LD A,(HL)	; A = ($17E7)
+0539   0434 E6 07               AND 07H		; A ^ %00000111, so A=%00000110
+0540   0436 D3 04               OUT (04H),A	; output A to port 4
+0541   0438 11 00 20            LD DE,2000H	; DE' = $2000 (memory location to move from)
+0542   043B 01 60 00            LD BC,0060H	; BC' = $60 (number of bytes)
+0543   043E 21 80 13            LD HL,1380H	; HL' = $1380 (memory location to move to)
+0544   0441 ED B0               LDIR		; run block transfer
+0545   0443 21 E7 17            LD HL,17E7H	; HL' = $17E7
+0546   0446 7E                  LD A,(HL)	; A = ($17E7)
+0547   0447 F6 08               OR 08H
+0548   0449 D3 04               OUT (04H),A	; OUTPUT A register to port ($04)
+0549   044B D9                  EXX	        ;switch back to regular registers
+0550   044C 21 E7 17            LD HL,17E7H	; HL = $17E7
+0551   044F 7E                  LD A,(HL)	; A = ($17E7)
+0552   0450 FE 05               CP 05H		;
+0553   0452 28 35               JR Z,L0112	; if ($17E7) = $05, jump to L0112
+0554   0454 3A E6 17    L0120:  LD A,(17E6H)
+0555   0457 FE 41               CP 41H
+0556   0459 28 08       L0102:  JR Z,L0113
+0557   045B FE 42               CP 42H
+0558   045D 28 08               JR Z,L0114
+0559   045F FE 43               CP 43H
+0560   0461 28 08               JR Z,L0115
+0561   0463 06 7F       L0113:  LD B,7FH
+0562   0465 10 FE       L0116:  DJNZ L0116
+0563   0467 06 5F       L0114:  LD B,5FH
+0564   0469 10 FE       L0101:  DJNZ L0101
+0565   046B 06 7F       L0115:  LD B,7FH
+0566   046D 10 FE       L0117:  DJNZ L0117
+0567   046F 21 47 17            LD HL,1747H
+0568   0472 7E          L0103:  LD A,(HL)
+0569   0473 FE 00               CP 00H
+0570   0475 28 04               JR Z,L0118
+0571   0477 35                  DEC (HL)
+0572   0478 C3 2F 04            JP L0104
+0573   047B D3 04               OUT (04H),A
+0574   047D C9                  RET
+
+
+
+
+
+0575   047E FF                  RST 38H
+0576   047F FF                  RST 38H
+0577   0480 E7                  RST 20H
+0578   0481 FF                  RST 38H
+0579   0482 FF          L0108:  RST 38H
+0580   0483 FF                  RST 38H
+0581   0484 FF                  RST 38H
+0582   0485 FF                  RST 38H
+0583   0486 FF                  RST 38H
+0584   0487 FF                  RST 38H
+0585   0488 FF                  RST 38H
+0586   0489 DB 08       L0112:  IN A,(08H)
+0587   048B E6 40               AND 40H
+0588   048D CA 3D 0F            JP Z,L0119
+0589   0490 18 C2               JR L0120
+0590   0492 3E 06       L0132:  LD A,06H
+0591   0494 32 E7 17            LD (17E7H),A
+0592   0497 D9          L0128:  EXX
+0593   0498 21 E7 17            LD HL,17E7H
+0594   049B 7E                  LD A,(HL)
+0595   049C E6 07               AND 07H
+0596   049E D3 04               OUT (04H),A
+0597   04A0 11 00 20            LD DE,2000H
+0598   04A3 01 60 00            LD BC,0060H
+0599   04A6 21 00 17            LD HL,1700H
+0600   04A9 ED B0               LDIR
+0601   04AB 21 E7 17            LD HL,17E7H
+0602   04AE 7E                  LD A,(HL)
+0603   04AF F6 08               OR 08H
+0604   04B1 D3 04               OUT (04H),A
+0605   04B3 D9                  EXX
+0606   04B4 3A E6 17            LD A,(17E6H)
+0607   04B7 FE 41               CP 41H
+0608   04B9 28 08               JR Z,L0121
+0609   04BB FE 42               CP 42H
+0610   04BD 28 08               JR Z,L0122
+0611   04BF FE 03               CP 03H
+0612   04C1 28 08               JR Z,L0123
+0613   04C3 06 7F       L0121:  LD B,7FH
+0614   04C5 10 FE       L0124:  DJNZ L0124
+0615   04C7 06 5F       L0122:  LD B,5FH
+0616   04C9 10 FE       L0125:  DJNZ L0125
+0617   04CB 06 7F       L0123:  LD B,7FH
+0618   04CD 10 FE       L0126:  DJNZ L0126
+0619   04CF 21 E7 17            LD HL,17E7H
+0620   04D2 7E                  LD A,(HL)
+0621   04D3 FE 00               CP 00H
+0622   04D5 28 04               JR Z,L0127
+0623   04D7 35                  DEC (HL)
+0624   04D8 C3 97 04            JP L0128
+0625   04DB D3 04       L0127:  OUT (04H),A
+0626   04DD C9                  RET
+0627   04DE FF                  RST 38H
+0628   04DF FF                  RST 38H
+0629   04E0 FF                  RST 38H
+0630   04E1 FF                  RST 38H
+0631   04E2 FF                  RST 38H
+0632   04E3 FF                  RST 38H
+0633   04E4 FF                  RST 38H
+0634   04E5 FF                  RST 38H
+0635   04E6 FF                  RST 38H
+0636   04E7 FF                  RST 38H
+0637   04E8 FF                  RST 38H
+
+
+0638   04E9 CD 2A 04    L0131:  CALL L0129	; call subroutine to display character 
+0639   04EC 21 E3 17            LD HL,17E3H	; HL = $17E3
+0640   04EF 7E                  LD A,(HL)	; A = ($17E3)
+0641   04F0 FE 00               CP 00H		; check if ($17E3) = $0000
+0642   04F2 28 03               JR Z,L0130	; if so, go to L0130..
+0643   04F4 35                  DEC (HL)	; otherwise decrement the value of ($17E3)...
+0644   04F5 18 F2               JR L0131	; and display the next column?
+
+0645   04F7 C9          L0130:  RET		; return to whatever called the display routine
+0646   04F8 CD 92 04    L0134:  CALL L0132
+0647   04FB 21 E3 17            LD HL,17E3H
+0648   04FE 7E                  LD A,(HL)
+0649   04FF FE 00               CP 00H
+0650   0501 28 03               JR Z,L0133
+0651   0503 35                  DEC (HL)
+0652   0504 18 F2               JR L0134
+0653   0506 C9          L0133:  RET
+0654   0507 21 80 17    L0093:  LD HL,1780H
+0655   050A 06 60               LD B,60H
+0656   050C 3E 00               LD A,00H
+0657   050E 77          L0135:  LD (HL),A
+0658   050F 23                  INC HL
+0659   0510 10 FC               DJNZ L0135
+0660   0512 C9                  RET
+0661   0513 06 00       L0087:  LD B,00H
+0662   0515 11 00 17            LD DE,1700H
+0663   0518 AF                  XOR A
+0664   0519 12                  LD (DE),A
+0665   051A 1C                  INC E
+0666   051B 2A C2 16            LD HL,(16C2H)
+0667   051E 7E                  LD A,(HL)
+0668   051F 6F                  LD L,A
+0669   0520 3E 00               LD A,00H
+0670   0522 4F                  LD C,A
+0671   0523 3E 08               LD A,08H
+0672   0525 B1                  OR C
+0673   0526 67                  LD H,A
+0674   0527 7E          L0137:  LD A,(HL)
+0675   0528 12                  LD (DE),A
+0676   0529 79                  LD A,C
+0677   052A FE 04               CP 04H
+0678   052C 28 05               JR Z,L0136
+0679   052E 0C                  INC C
+0680   052F 24                  INC H
+0681   0530 1C                  INC E
+0682   0531 18 F4               JR L0137
+0683   0533 78          L0136:  LD A,B
+0684   0534 FE 0F               CP 0FH
+0685   0536 C8                  RET Z
+0686   0537 04                  INC B
+0687   0538 2A C2 16            LD HL,(16C2H)
+0688   053B 23                  INC HL
+0689   053C 22 C2 16            LD (16C2H),HL
+0690   053F 1C                  INC E
+0691   0540 00                  NOP
+0692   0541 18 05               JR L0138
+0693   0543 D9                  EXX
+0694   0544 76                  HALT
+0695   0545 76                  HALT
+0696   0546 76                  HALT
+0697   0547 76                  HALT
+0698   0548 76          L0138:  HALT
+0699   0549 21 00 17    L0092:  LD HL,1700H
+0700   054C 11 80 17    L0222:  LD DE,1780H
+0701   054F 01 60 00            LD BC,0060H
+0702   0552 ED B0               LDIR
+0703   0554 C9                  RET
+0704   0555 CD 13 05    L0080:  CALL L0087
+0705   0558 CD CF 06    L0221:  CALL L0139
+0706   055B CD 8B 07    L0144:  CALL L0089
+0707   055E CD 82 05            CALL L0090
+0708   0561 CD 2B 07            CALL L0091
+0709   0564 CD 49 05            CALL L0092
+0710   0567 CD 99 07            CALL L0140
+0711   056A C3 87 03            JP L0094
+0712   056D FE 36       L0084:  CP 36H
+0713   056F CA 04 0D            JP Z,L0141
+0714   0572 C3 A8 0D            JP L0142
+0715   0575 03                  INC BC
+0716   0576 CD 13 05    L0082:  CALL L0087
+0717   0579 CD FC 06            CALL L0143
+0718   057C C3 5B 05            JP L0144
+0719   057F 76                  HALT
+0720   0580 76                  HALT
+0721   0581 76          L0097:  HALT
+0722   0582 06 60       L0090:  LD B,60H
+0723   0584 68          L0147:  LD L,B
+0724   0585 26 17               LD H,17H
+0725   0587 7E                  LD A,(HL)
+0726   0588 E6 80               AND 80H
+0727   058A 20 13               JR NZ,L0145
+0728   058C 68                  LD L,B
+0729   058D 26 17               LD H,17H
+0730   058F 78                  LD A,B
+0731   0590 C6 80               ADD A,80H
+0732   0592 5F                  LD E,A
+0733   0593 16 17               LD D,17H
+0734   0595 ED A8               LDD
+0735   0597 78          L0148:  LD A,B
+0736   0598 FE FF               CP 0FFH
+0737   059A 28 0E               JR Z,L0146
+0738   059C 05                  DEC B
+0739   059D 18 E5               JR L0147
+0740   059F 78          L0145:  LD A,B
+0741   05A0 C6 80               ADD A,80H
+0742   05A2 6F                  LD L,A
+0743   05A3 26 17               LD H,17H
+0744   05A5 3E 00               LD A,00H
+0745   05A7 77                  LD (HL),A
+0746   05A8 18 ED               JR L0148
+0747   05AA C9          L0146:  RET
+0748   05AB 21 E0 17            LD HL,17E0H
+0749   05AE 3E 0F               LD A,0FH
+0750   05B0 77                  LD (HL),A
+0751   05B1 21 E0 17    L0153:  LD HL,17E0H
+0752   05B4 7E                  LD A,(HL)
+0753   05B5 FE 00               CP 00H
+0754   05B7 28 2A               JR Z,L0149
+0755   05B9 DD 21 E0 17         LD IX,17E0H
+0756   05BD 0E 5F               LD C,5FH
+0757   05BF 21 00 17            LD HL,1700H
+0758   05C2 11 80 17            LD DE,1780H
+0759   05C5 7E          L0152:  LD A,(HL)
+0760   05C6 E6 7F               AND 7FH
+0761   05C8 DD 46 00            LD B,(IX+00H)
+0762   05CB CB 27       L0150:  SLA A
+0763   05CD 10 FC               DJNZ L0150
+0764   05CF 12                  LD (DE),A
+0765   05D0 23                  INC HL
+0766   05D1 13                  INC DE
+0767   05D2 79                  LD A,C
+0768   05D3 FE 00               CP 00H
+0769   05D5 28 03               JR Z,L0151
+0770   05D7 0D                  DEC C
+0771   05D8 18 EB               JR L0152
+0772   05DA CD 2A 04    L0151:  CALL L0129
+0773   05DD 21 E0 17            LD HL,17E0H
+0774   05E0 35                  DEC (HL)
+0775   05E1 18 CE               JR L0153
+0776   05E3 21 00 17    L0149:  LD HL,1700H
+0777   05E6 11 80 17            LD DE,1780H
+0778   05E9 01 60 00            LD BC,0060H
+0779   05EC ED B0               LDIR
+0780   05EE CD 2A 04    L0155:  CALL L0129
+0781   05F1 21 E3 17            LD HL,17E3H
+0782   05F4 7E                  LD A,(HL)
+0783   05F5 FE 00               CP 00H
+0784   05F7 28 03               JR Z,L0154
+0785   05F9 35                  DEC (HL)
+0786   05FA 18 F2               JR L0155
+0787   05FC C9          L0154:  RET
+0788   05FD 21 E0 17    L0095:  LD HL,17E0H
+0789   0600 3E 0F               LD A,0FH
+0790   0602 77                  LD (HL),A
+0791   0603 21 E0 17    L0160:  LD HL,17E0H
+0792   0606 7E                  LD A,(HL)
+0793   0607 FE 00               CP 00H
+0794   0609 28 2A               JR Z,L0156
+0795   060B DD 21 E0 17         LD IX,17E0H
+0796   060F 0E 5F               LD C,5FH
+0797   0611 21 00 17            LD HL,1700H
+0798   0614 11 80 17            LD DE,1780H
+0799   0617 7E          L0159:  LD A,(HL)
+0800   0618 E6 7F               AND 7FH
+0801   061A DD 46 00            LD B,(IX+00H)
+0802   061D CB 2F       L0157:  SRA A
+0803   061F 10 FC               DJNZ L0157
+0804   0621 12                  LD (DE),A
+0805   0622 23                  INC HL
+0806   0623 13                  INC DE
+0807   0624 79                  LD A,C
+0808   0625 FE 00               CP 00H
+0809   0627 28 03               JR Z,L0158
+0810   0629 0D                  DEC C
+0811   062A 18 EB               JR L0159
+0812   062C CD 2A 04    L0158:  CALL L0129
+0813   062F 21 E0 17            LD HL,17E0H
+0814   0632 35                  DEC (HL)
+0815   0633 18 CE               JR L0160
+0816   0635 C3 E3 05    L0156:  JP L0149
+0817   0638 3A E5 17    L0027:  LD A,(17E5H)
+0818   063B FE 63               CP 63H
+0819   063D CA F8 07            JP Z,L0161
+0820   0640 E6 FF               AND 0FFH
+0821   0642 CA CB 0F            JP Z,L0162
+0822   0645 FE 64               CP 64H
+0823   0647 CA CB 0F            JP Z,L0162
+0824   064A C3 D7 07            JP L0163
+0825   064D F2 C9 21            JP P,L0164
+0826   0650 E0                  RET PO
+0827   0651 17                  RLA
+0828   0652 3E 00               LD A,00H
+0829   0654 77                  LD (HL),A
+0830   0655 CD 2A 04            CALL L0129
+0831   0658 21 E0 17            LD HL,17E0H
+0832   065B 34                  INC (HL)
+0833   065C 21 E0 17    L0169:  LD HL,17E0H
+0834   065F 7E                  LD A,(HL)
+0835   0660 FE 0F               CP 0FH
+0836   0662 28 2A               JR Z,L0165
+0837   0664 DD 21 E0 17         LD IX,17E0H
+0838   0668 0E 5F               LD C,5FH
+0839   066A 21 00 17            LD HL,1700H
+0840   066D 11 80 17            LD DE,1780H
+0841   0670 7E          L0168:  LD A,(HL)
+0842   0671 E6 7F               AND 7FH
+0843   0673 DD 46 00            LD B,(IX+00H)
+0844   0676 CB 27       L0166:  SLA A
+0845   0678 10 FC               DJNZ L0166
+0846   067A 12                  LD (DE),A
+0847   067B 23                  INC HL
+0848   067C 13                  INC DE
+0849   067D 79                  LD A,C
+0850   067E FE 00               CP 00H
+0851   0680 28 03               JR Z,L0167
+0852   0682 0D                  DEC C
+0853   0683 18 EB               JR L0168
+0854   0685 CD 2A 04    L0167:  CALL L0129
+0855   0688 21 E0 17            LD HL,17E0H
+0856   068B 34                  INC (HL)
+0857   068C 18 CE               JR L0169
+0858   068E C9          L0165:  RET
+0859   068F 21 E0 17    L0098:  LD HL,17E0H
+0860   0692 3E 00               LD A,00H
+0861   0694 77                  LD (HL),A
+0862   0695 CD 2A 04            CALL L0129
+0863   0698 21 E0 17            LD HL,17E0H
+0864   069B 34                  INC (HL)
+0865   069C 21 E0 17    L0174:  LD HL,17E0H
+0866   069F 7E                  LD A,(HL)
+0867   06A0 FE 0F               CP 0FH
+0868   06A2 28 2A               JR Z,L0170
+0869   06A4 DD 21 E0 17         LD IX,17E0H
+0870   06A8 0E 5F               LD C,5FH
+0871   06AA 21 00 17            LD HL,1700H
+0872   06AD 11 80 17            LD DE,1780H
+0873   06B0 7E          L0173:  LD A,(HL)
+0874   06B1 E6 7F               AND 7FH
+0875   06B3 DD 46 00            LD B,(IX+00H)
+0876   06B6 CB 2F       L0171:  SRA A
+0877   06B8 10 FC               DJNZ L0171
+0878   06BA 12                  LD (DE),A
+0879   06BB 23                  INC HL
+0880   06BC 13                  INC DE
+0881   06BD 79                  LD A,C
+0882   06BE FE 00               CP 00H
+0883   06C0 28 03               JR Z,L0172
+0884   06C2 0D                  DEC C
+0885   06C3 18 EB               JR L0173
+0886   06C5 CD 2A 04    L0172:  CALL L0129
+0887   06C8 21 E0 17            LD HL,17E0H
+0888   06CB 34                  INC (HL)
+0889   06CC 18 CE               JR L0174
+0890   06CE C9          L0170:  RET
+0891   06CF CD 07 05    L0139:  CALL L0093
+0892   06D2 21 E0 17            LD HL,17E0H
+0893   06D5 3E 00               LD A,00H
+0894   06D7 77                  LD (HL),A
+0895   06D8 CD 2A 04    L0176:  CALL L0129
+0896   06DB 21 E0 17            LD HL,17E0H
+0897   06DE 7E                  LD A,(HL)
+0898   06DF FE 60               CP 60H
+0899   06E1 28 18               JR Z,L0175
+0900   06E3 21 E0 17            LD HL,17E0H
+0901   06E6 7E                  LD A,(HL)
+0902   06E7 6F                  LD L,A
+0903   06E8 26 17               LD H,17H
+0904   06EA 11 E0 17            LD DE,17E0H
+0905   06ED 1A                  LD A,(DE)
+0906   06EE C6 80               ADD A,80H
+0907   06F0 40                  LD B,B
+0908   06F1 16 17               LD D,17H
+0909   06F3 ED A0               LDI
+0910   06F5 21 E0 17            LD HL,17E0H
+0911   06F8 34                  INC (HL)
+0912   06F9 18 DD               JR L0176
+0913   06FB C9          L0175:  RET
+0914   06FC 21 E0 17    L0143:  LD HL,17E0H
+0915   06FF 3E 00               LD A,00H
+0916   0701 77                  LD (HL),A
+0917   0702 21 E0 17    L0177:  LD HL,17E0H
+0918   0705 6E                  LD L,(HL)
+0919   0706 26 17               LD H,17H
+0920   0708 7E                  LD A,(HL)
+0921   0709 21 DF 17            LD HL,17DFH
+0922   070C 77                  LD (HL),A
+0923   070D CD 2A 04            CALL L0129
+0924   0710 21 E0 17            LD HL,17E0H
+0925   0713 7E                  LD A,(HL)
+0926   0714 FE 5F               CP 5FH
+0927   0716 C8                  RET Z
+0928   0717 34                  INC (HL)
+0929   0718 21 81 17            LD HL,1781H
+0930   071B 11 80 17            LD DE,1780H
+0931   071E 01 5F 00            LD BC,005FH
+0932   0721 ED B0               LDIR
+0933   0723 C3 02 07            JP L0177
+0934   0726 FF                  RST 38H
+0935   0727 34                  INC (HL)
+0936   0728 18 D8               JR L0177
+0937   072A C9                  RET
+0938   072B C3 EC 0D    L0091:  JP L0178
+
+						;some display calls (not sure exactly)
+0939   072E 3E 03       L0228:  LD A,03H	
+0940   0730 01 3E 1F            LD BC,1F3EH     
+0941   0733 32 E3 17            LD (17E3H),A    
+0942   0736 CD E9 04            CALL L0131	
+0943   0739 3E 08               LD A,08H	
+0944   073B 32 E3 17            LD (17E3H),A	
+0945   073E CD F8 04            CALL L0134	
+0946   0741 3E 1F               LD A,1FH	
+0947   0743 32 E3 17            LD (17E3H),A	
+0948   0746 CD E9 04            CALL L0131	
+0949   0749 3E 08               LD A,08H	
+0950   074B 32 E3 17            LD (17E3H),A	
+0951   074E CD F8 04            CALL L0134
+0952   0751 3E 1F               LD A,1FH
+0953   0753 32 E3 17            LD (17E3H),A
+0954   0756 CD E9 04            CALL L0131
+0955   0759 3E 08               LD A,08H
+0956   075B 32 E3 17            LD (17E3H),A
+0957   075E CD F8 04            CALL L0134
+0958   0761 C9                  RET
+
+
+
+0959   0762 FF                  RST 38H
+0960   0763 FF                  RST 38H
+0961   0764 21 00 17    L0088:  LD HL,1700H
+0962   0767 11 80 17            LD DE,1780H
+0963   076A 01 60 00            LD BC,0060H
+0964   076D ED B0               LDIR
+0965   076F 00                  NOP
+0966   0770 00                  NOP
+0967   0771 00                  NOP
+0968   0772 00                  NOP
+0969   0773 00                  NOP
+0970   0774 3E 0F               LD A,0FH
+0971   0776 32 E3 17            LD (17E3H),A
+0972   0779 CD E9 04            CALL L0131
+0973   077C C9                  RET
+0974   077D 00                  NOP
+0975   077E 00                  NOP
+0976   077F 00                  NOP
+0977   0780 00                  NOP
+0978   0781 00                  NOP
+0979   0782 3E 5F       L0238:  LD A,5FH	; A = $5F
+0980   0784 32 E3 17            LD (17E3H),A	; $17E3 = $5F
+0981   0787 CD E9 04            CALL L0131
+0982   078A C9                  RET
+0983   078B 00          L0089:  NOP
+0984   078C 00                  NOP
+0985   078D 00                  NOP
+0986   078E 00                  NOP
+0987   078F 00                  NOP
+0988   0790 1A                  LD A,(DE)
+0989   0791 2F                  CPL
+0990   0792 32 E3 17            LD (17E3H),A
+0991   0795 CD E9 04            CALL L0131
+0992   0798 C9                  RET
+0993   0799 00          L0140:  NOP
+0994   079A 00                  NOP
+0995   079B 00                  NOP
+0996   079C 00                  NOP
+0997   079D 00                  NOP
+0998   079E 21 E0 17            LD HL,17E0H
+0999   07A1 3E 60               LD A,60H
+1000   07A3 77                  LD (HL),A
+1001   07A4 CD 2A 04    L0180:  CALL L0129
+1002   07A7 3A E0 17            LD A,(17E0H)
+1003   07AA FE FF               CP 0FFH
+1004   07AC 28 16               JR Z,L0179
+1005   07AE 21 80 17            LD HL,1780H
+1006   07B1 11 7F 17            LD DE,177FH
+1007   07B4 01 60 00            LD BC,0060H
+1008   07B7 ED B0               LDIR
+1009   07B9 3E 00               LD A,00H
+1010   07BB 32 DF 17            LD (17DFH),A
+1011   07BE 21 E0 17            LD HL,17E0H
+1012   07C1 35                  DEC (HL)
+1013   07C2 18 E0               JR L0180
+1014   07C4 C9          L0179:  RET
+
+
+;---------------------------------------------------------------------------|
+;*************          CHARACTER DEFINITIONS            *******************|
+;---------------------------------------------------------------------------|
+;									    |
+;------------------NOTE: there is a bit of code mixed in with these---------|
+; They are stored as follows:						    |
+; 									    |
+; ASCII code in HEX + $800 = address in PROM for definition first byte      |
+;       "       "   + $900 = address in PROM for definition second byte     |
+;	"	"	 etc.						    |
+;									    |
+; Each character has a 5-byte definition.				    |
+; Each byte defines the column, bitwise by LED. The first bit is meaningless|
+; because there are only 7 LEDs per column.				    |
+; The values range from %00000000 to %01111111.				    |
+; I am unsure of what a value greater than 127 implies....	
+; Special characters:
+; t = exclamation mark	    |
+;----------------------------------------------------------------------------
+
+1015   07C5 FF                  RST 38H       
+1016   07C6 FF                  RST 38H
+1017   07C7 FF                  RST 38H
+1018   07C8 FF                  RST 38H
+1019   07C9 FF                  RST 38H
+1020   07CA FF                  RST 38H
+1021   07CB FF                  RST 38H
+1022   07CC FF                  RST 38H
+1023   07CD FF                  RST 38H
+1024   07CE FF                  RST 38H
+1025   07CF FF                  RST 38H
+1026   07D0 7E                  LD A,(HL)
+1027   07D1 21 05 13            LD HL,1305H
+1028   07D4 C3 61 03            JP L0181
+1029   07D7 3A E5 17    L0163:  LD A,(17E5H)
+1030   07DA 32 AD 16            LD (16ADH),A
+1031   07DD 06 60               LD B,60H
+1032   07DF 21 80 17            LD HL,1780H
+1033   07E2 AF          L0182:  XOR A
+1034   07E3 BE                  CP (HL)
+1035   07E4 20 12               JR NZ,L0161
+1036   07E6 23                  INC HL
+1037   07E7 10 F9               DJNZ L0182
+1038   07E9 CD 30 02            CALL L0039
+1039   07EC 5D                  LD E,L
+1040   07ED 54                  LD D,H
+1041   07EE 01 10 00            LD BC,0010H
+1042   07F1 09                  ADD HL,BC
+1043   07F2 ED B0       L0257:  LDIR
+1044   07F4 D9                  EXX
+1045   07F5 C3 D6 0F            JP L0183
+1046   07F8 CD 49 02    L0161:  CALL L0184
+1047   07FB C3 14 01            JP L0185
+1048   07FE FF                  RST 38H
+1049   07FF FF                  RST 38H
+1050   0800 00                  NOP
+1051   0801 FF                  RST 38H
+1052   0802 FF                  RST 38H
+1053   0803 FF                  RST 38H
+1054   0804 FF                  RST 38H
+1055   0805 FF                  RST 38H
+1056   0806 FF                  RST 38H
+1057   0807 FF                  RST 38H
+1058   0808 FF                  RST 38H
+1059   0809 FF                  RST 38H
+1060   080A FF                  RST 38H
+1061   080B FF                  RST 38H
+1062   080C FF                  RST 38H
+1063   080D FF                  RST 38H
+1064   080E FF                  RST 38H
+1065   080F FF                  RST 38H
+1066   0810 00                  NOP
+1067   0811 08                  EX AF,AF'
+1068   0812 08                  EX AF,AF'
+1069   0813 22 08 14            LD (1408H),HL
+1070   0816 00                  NOP
+1071   0817 08                  EX AF,AF'
+1072   0818 63                  LD H,E
+1073   0819 00                  NOP
+1074   081A FF                  RST 38H
+1075   081B FF                  RST 38H
+1076   081C FF                  RST 38H
+1077   081D FF                  RST 38H
+1078   081E FF                  RST 38H
+1079   081F FF                  RST 38H
+1080   0820 00                  NOP
+1081   0821 FF                  RST 38H
+1082   0822 FF                  RST 38H
+1083   0823 FF                  RST 38H
+1084   0824 FF                  RST 38H
+1085   0825 FF                  RST 38H
+1086   0826 FF                  RST 38H
+1087   0827 FF                  RST 38H
+1088   0828 FF                  RST 38H
+1089   0829 FF                  RST 38H
+1090   082A FF                  RST 38H
+1091   082B FF                  RST 38H
+1092   082C FF                  RST 38H
+1093   082D FF                  RST 38H
+1094   082E FF                  RST 38H
+1095   082F FF                  RST 38H
+1096   0830 02                  LD (BC),A
+1097   0831 00                  NOP
+1098   0832 42                  LD B,D
+1099   0833 22 18 27            LD (2718H),HL
+1100   0836 3E 01               LD A,01H
+1101   0838 36 26               LD (HL),26H
+1102   083A FF                  RST 38H
+1103   083B FF                  RST 38H
+1104   083C FF                  RST 38H
+1105   083D FF                  RST 38H
+1106   083E FF                  RST 38H
+1107   083F FF                  RST 38H
+1108   0840 3E 7E               LD A,7EH
+1109   0842 7F                  LD A,A
+1110   0843 3E 7F               LD A,7FH
+1111   0845 7F                  LD A,A
+1112   0846 7F                  LD A,A
+1113   0847 3E 7F               LD A,7FH
+1114   0849 00                  NOP
+1115   084A 20 7F               JR NZ,L0186
+1116   084C 7F                  LD A,A
+1117   084D 7F                  LD A,A
+1118   084E 7F                  LD A,A
+1119   084F 3E 7F               LD A,7FH
+1120   0851 3E 7F               LD A,7FH
+1121   0853 46                  LD B,(HL)
+1122   0854 01 3F 1F            LD BC,1F3FH
+1123   0857 3F                  CCF
+1124   0858 63                  LD H,E
+1125   0859 07                  RLCA
+1126   085A 61                  LD H,C
+1127   085B 00                  NOP
+1128   085C 06 FF               LD B,0FFH
+1129   085E FF                  RST 38H
+1130   085F FF                  RST 38H
+1131   0860 FF                  RST 38H
+1132   0861 7F                  LD A,A
+1133   0862 08                  EX AF,AF'
+1134   0863 20 08               JR NZ,L0187
+1135   0865 40                  LD B,B
+1136   0866 08                  EX AF,AF'
+1137   0867 04                  INC B
+1138   0868 10 00               DJNZ L0188
+1139   086A 24          L0188:  INC H
+1140   086B 68                  LD L,B
+1141   086C 01 0C 1C            LD BC,1C0CH
+1142   086F 14                  INC D
+1143   0870 14                  INC D
+1144   0871 00                  NOP
+1145   0872 00                  NOP
+1146   0873 00                  NOP
+1147   0874 00                  NOP
+1148   0875 08                  EX AF,AF'
+1149   0876 0E 00               LD C,00H
+1150   0878 3E 02               LD A,02H
+1151   087A 30 7F               JR NC,L0189
+1152   087C 1C                  INC E
+1153   087D FF                  RST 38H
+1154   087E FF                  RST 38H
+1155   087F 7F                  LD A,A
+1156   0880 14                  INC D
+1157   0881 FF                  RST 38H
+1158   0882 FF                  RST 38H
+1159   0883 FF                  RST 38H
+1160   0884 FF                  RST 38H
+1161   0885 FF                  RST 38H
+1162   0886 FF                  RST 38H
+1163   0887 FF                  RST 38H
+1164   0888 FF                  RST 38H
+1165   0889 FF                  RST 38H
+1166   088A FF                  RST 38H
+1167   088B FF                  RST 38H
+1168   088C FF                  RST 38H
+1169   088D FF                  RST 38H
+1170   088E FF                  RST 38H
+1171   088F FF                  RST 38H
+1172   0890 80                  ADD A,B
+1173   0891 88                  ADC A,B
+1174   0892 88                  ADC A,B
+1175   0893 A2                  AND D
+1176   0894 88                  ADC A,B
+1177   0895 94                  SUB H
+1178   0896 80                  ADD A,B
+1179   0897 88                  ADC A,B
+1180   0898 E3                  EX (SP),HL
+1181   0899 80                  ADD A,B
+1182   089A FF                  RST 38H
+1183   089B FF                  RST 38H
+1184   089C FF                  RST 38H
+1185   089D FF                  RST 38H
+1186   089E FF                  RST 38H
+1187   089F FF                  RST 38H
+1188   08A0 80                  ADD A,B
+1189   08A1 FF                  RST 38H
+1190   08A2 FF                  RST 38H
+1191   08A3 FF                  RST 38H
+1192   08A4 FF                  RST 38H
+1193   08A5 FF                  RST 38H
+1194   08A6 FF                  RST 38H
+1195   08A7 FF                  RST 38H
+1196   08A8 FF                  RST 38H
+1197   08A9 FF                  RST 38H
+1198   08AA FF                  RST 38H
+1199   08AB FF                  RST 38H
+1200   08AC FF                  RST 38H
+1201   08AD FF                  RST 38H
+1202   08AE FF                  RST 38H
+1203   08AF FF                  RST 38H
+1204   08B0 BE                  CP (HL)
+1205   08B1 80                  ADD A,B
+1206   08B2 C2 A2 98            JP NZ,L0190
+1207   08B5 A7                  AND A
+1208   08B6 BE                  CP (HL)
+1209   08B7 81                  ADD A,C
+1210   08B8 B6                  OR (HL)
+1211   08B9 A6                  AND (HL)
+1212   08BA FF                  RST 38H
+1213   08BB FF                  RST 38H
+1214   08BC FF                  RST 38H
+1215   08BD FF                  RST 38H
+1216   08BE FF                  RST 38H
+1217   08BF FF                  RST 38H
+1218   08C0 BF                  CP A
+1219   08C1 FE FF               CP 0FFH
+1220   08C3 BE                  CP (HL)
+1221   08C4 FF                  RST 38H
+1222   08C5 FF                  RST 38H
+1223   08C6 FF                  RST 38H
+1224   08C7 BE                  CP (HL)
+1225   08C8 FF                  RST 38H
+1226   08C9 80                  ADD A,B
+1227   08CA A0                  AND B
+1228   08CB FF          L0186:  RST 38H
+1229   08CC FF                  RST 38H
+1230   08CD FF                  RST 38H
+1231   08CE FF                  RST 38H
+1232   08CF BE                  CP (HL)
+1233   08D0 FF                  RST 38H
+1234   08D1 BE                  CP (HL)
+1235   08D2 FF                  RST 38H
+1236   08D3 C6 81               ADD A,81H
+1237   08D5 BF                  CP A
+1238   08D6 9F                  SBC A,A
+1239   08D7 BF                  CP A
+1240   08D8 E3                  EX (SP),HL
+1241   08D9 87                  ADD A,A
+1242   08DA E1                  POP HL
+1243   08DB 00                  NOP
+1244   08DC 86                  ADD A,(HL)
+1245   08DD FF                  RST 38H
+1246   08DE FF                  RST 38H
+1247   08DF FF                  RST 38H
+1248   08E0 FF                  RST 38H
+1249   08E1 FF                  RST 38H
+1250   08E2 88                  ADC A,B
+1251   08E3 A0                  AND B
+1252   08E4 88                  ADC A,B
+1253   08E5 C0                  RET NZ
+1254   08E6 88                  ADC A,B
+1255   08E7 84                  ADD A,H
+1256   08E8 90                  SUB B
+1257   08E9 80                  ADD A,B
+1258   08EA A4                  AND H
+1259   08EB E8                  RET PE
+1260   08EC 81                  ADD A,C
+1261   08ED 8C                  ADC A,H
+1262   08EE 9C                  SBC A,H
+1263   08EF 94                  SUB H
+1264   08F0 94                  SUB H
+1265   08F1 80                  ADD A,B
+1266   08F2 80                  ADD A,B
+1267   08F3 80                  ADD A,B
+1268   08F4 80                  ADD A,B
+1269   08F5 88                  ADC A,B
+1270   08F6 8E                  ADC A,(HL)
+1271   08F7 80                  ADD A,B
+1272   08F8 BE                  CP (HL)
+1273   08F9 82                  ADD A,D
+1274   08FA B0                  OR B
+1275   08FB FF          L0189:  RST 38H
+1276   08FC 9C                  SBC A,H
+1277   08FD FF                  RST 38H
+1278   08FE FF                  RST 38H
+1279   08FF FF                  RST 38H
+1280   0900 00                  NOP
+1281   0901 FF                  RST 38H
+1282   0902 FF                  RST 38H
+1283   0903 FF                  RST 38H
+1284   0904 FF                  RST 38H
+1285   0905 FF                  RST 38H
+1286   0906 FF                  RST 38H
+1287   0907 FF                  RST 38H
+1288   0908 FF                  RST 38H
+1289   0909 FF                  RST 38H
+1290   090A FF                  RST 38H
+1291   090B FF                  RST 38H
+1292   090C FF                  RST 38H
+1293   090D FF                  RST 38H
+1294   090E FF                  RST 38H
+1295   090F FF                  RST 38H
+1296   0910 41                  LD B,C
+1297   0911 08                  EX AF,AF'
+1298   0912 08                  EX AF,AF'
+1299   0913 14                  INC D
+1300   0914 08                  EX AF,AF'
+1301   0915 14                  INC D
+1302   0916 00                  NOP
+1303   0917 14                  INC D
+1304   0918 13                  INC DE
+1305   0919 7F                  LD A,A
+1306   091A FF                  RST 38H
+1307   091B FF                  RST 38H
+1308   091C FF                  RST 38H
+1309   091D FF                  RST 38H
+1310   091E FF                  RST 38H
+1311   091F FF                  RST 38H
+1312   0920 00                  NOP
+1313   0921 FF                  RST 38H
+1314   0922 FF                  RST 38H
+1315   0923 FF                  RST 38H
+1316   0924 FF                  RST 38H
+1317   0925 FF                  RST 38H
+1318   0926 FF                  RST 38H
+1319   0927 FF                  RST 38H
+1320   0928 FF                  RST 38H
+1321   0929 FF                  RST 38H
+1322   092A FF                  RST 38H
+1323   092B FF                  RST 38H
+1324   092C FF                  RST 38H
+1325   092D FF                  RST 38H
+1326   092E FF                  RST 38H
+1327   092F FF                  RST 38H
+1328   0930 41                  LD B,C
+1329   0931 42                  LD B,D
+1330   0932 61                  LD H,C
+1331   0933 41                  LD B,C
+1332   0934 14                  INC D
+1333   0935 45                  LD B,L
+1334   0936 49                  LD C,C
+1335   0937 71                  LD (HL),C
+1336   0938 49                  LD C,C
+1337   0939 49                  LD C,C
+1338   093A FF                  RST 38H
+1339   093B FF                  RST 38H
+1340   093C FF                  RST 38H
+1341   093D FF                  RST 38H
+1342   093E FF                  RST 38H
+1343   093F FF                  RST 38H
+1344   0940 41                  LD B,C
+1345   0941 09                  ADD HL,BC
+1346   0942 49                  LD C,C
+1347   0943 41                  LD B,C
+1348   0944 41                  LD B,C
+1349   0945 49                  LD C,C
+1350   0946 09                  ADD HL,BC
+1351   0947 41                  LD B,C
+1352   0948 08                  EX AF,AF'
+1353   0949 41                  LD B,C
+1354   094A 40                  LD B,B
+1355   094B 08                  EX AF,AF'
+1356   094C 40                  LD B,B
+1357   094D 02                  LD (BC),A
+1358   094E 04                  INC B
+1359   094F 41                  LD B,C
+1360   0950 09                  ADD HL,BC
+1361   0951 41                  LD B,C
+1362   0952 09                  ADD HL,BC
+1363   0953 49                  LD C,C
+1364   0954 01 40 20            LD BC,2040H
+1365   0957 40                  LD B,B
+1366   0958 14                  INC D
+1367   0959 08                  EX AF,AF'
+1368   095A 51                  LD D,C
+1369   095B 00                  NOP
+1370   095C 09                  ADD HL,BC
+1371   095D FF                  RST 38H
+1372   095E FF                  RST 38H
+1373   095F FF                  RST 38H
+1374   0960 09                  ADD HL,BC
+1375   0961 3E 1C               LD A,1CH
+1376   0963 10 08               DJNZ L0191
+1377   0965 00                  NOP
+1378   0966 1C                  INC E
+1379   0967 02                  LD (BC),A
+1380   0968 20 00               JR NZ,L0192
+1381   096A 2A 3E 2A    L0192:  LD HL,(2A3EH)
+1382   096D 5E          L0191:  LD E,(HL)
+1383   096E 4A                  LD C,D
+1384   096F 3E 08               LD A,08H
+1385   0971 40                  LD B,B
+1386   0972 00                  NOP
+1387   0973 08                  EX AF,AF'
+1388   0974 00                  NOP
+1389   0975 00                  NOP
+1390   0976 1F                  RRA
+1391   0977 40                  LD B,B
+1392   0978 41                  LD B,C
+1393   0979 01 4E 7F            LD BC,7F4EH
+1394   097C 22 FF FF            LD (0FFFFH),HL
+1395   097F 7F                  LD A,A
+1396   0980 08                  EX AF,AF'
+1397   0981 FF                  RST 38H
+1398   0982 FF                  RST 38H
+1399   0983 FF                  RST 38H
+1400   0984 FF                  RST 38H
+1401   0985 FF                  RST 38H
+1402   0986 FF                  RST 38H
+1403   0987 FF                  RST 38H
+1404   0988 FF                  RST 38H
+1405   0989 FF                  RST 38H
+1406   098A FF                  RST 38H
+1407   098B FF                  RST 38H
+1408   098C FF                  RST 38H
+1409   098D FF                  RST 38H
+1410   098E FF                  RST 38H
+1411   098F FF                  RST 38H
+1412   0990 C1                  POP BC
+1413   0991 88                  ADC A,B
+1414   0992 88                  ADC A,B
+1415   0993 94                  SUB H
+1416   0994 88                  ADC A,B
+1417   0995 94                  SUB H
+1418   0996 80                  ADD A,B
+1419   0997 94                  SUB H
+1420   0998 93                  SUB E
+1421   0999 FF                  RST 38H
+1422   099A FF                  RST 38H
+1423   099B FF                  RST 38H
+1424   099C FF                  RST 38H
+1425   099D FF                  RST 38H
+1426   099E FF                  RST 38H
+1427   099F FF                  RST 38H
+1428   09A0 D9                  EXX
+1429   09A1 FF                  RST 38H
+1430   09A2 FF                  RST 38H
+1431   09A3 FF                  RST 38H
+1432   09A4 FF                  RST 38H
+1433   09A5 FF                  RST 38H
+1434   09A6 FF                  RST 38H
+1435   09A7 FF                  RST 38H
+1436   09A8 FF                  RST 38H
+1437   09A9 FF                  RST 38H
+1438   09AA FF                  RST 38H
+1439   09AB FF                  RST 38H
+1440   09AC FF                  RST 38H
+1441   09AD FF                  RST 38H
+1442   09AE FF                  RST 38H
+1443   09AF FF                  RST 38H
+1444   09B0 C1                  POP BC
+1445   09B1 C2 E1 C1            JP NZ,L0193
+1446   09B4 94                  SUB H
+1447   09B5 C5                  PUSH BC
+1448   09B6 C9                  RET
+1449   09B7 F1                  POP AF
+1450   09B8 C9                  RET
+1451   09B9 C9                  RET
+1452   09BA FF                  RST 38H
+1453   09BB FF                  RST 38H
+1454   09BC FF                  RST 38H
+1455   09BD FF                  RST 38H
+1456   09BE FF                  RST 38H
+1457   09BF FF                  RST 38H
+1458   09C0 C3 89 C9            JP L0194
+1459   09C3 C1                  POP BC
+1460   09C4 C1                  POP BC
+1461   09C5 C9                  RET
+1462   09C6 89                  ADC A,C
+1463   09C7 C1                  POP BC
+1464   09C8 88                  ADC A,B
+1465   09C9 C1                  POP BC
+1466   09CA C0                  RET NZ
+1467   09CB 88                  ADC A,B
+1468   09CC C0                  RET NZ
+1469   09CD 82                  ADD A,D
+1470   09CE 84                  ADD A,H
+1471   09CF C1                  POP BC
+1472   09D0 89                  ADC A,C
+1473   09D1 C1                  POP BC
+1474   09D2 89                  ADC A,C
+1475   09D3 C9                  RET
+1476   09D4 81                  ADD A,C
+1477   09D5 C0                  RET NZ
+1478   09D6 A0                  AND B
+1479   09D7 C0                  RET NZ
+1480   09D8 94                  SUB H
+1481   09D9 88                  ADC A,B
+1482   09DA D1                  POP DE
+1483   09DB 00                  NOP
+1484   09DC 89                  ADC A,C
+1485   09DD FF                  RST 38H
+1486   09DE FF                  RST 38H
+1487   09DF FF                  RST 38H
+1488   09E0 8F                  ADC A,A
+1489   09E1 BE                  CP (HL)
+1490   09E2 9C                  SBC A,H
+1491   09E3 90                  SUB B
+1492   09E4 88                  ADC A,B
+1493   09E5 80                  ADD A,B
+1494   09E6 9C                  SBC A,H
+1495   09E7 82                  ADD A,D
+1496   09E8 A0                  AND B
+1497   09E9 80                  ADD A,B
+1498   09EA AA                  XOR D
+1499   09EB BE                  CP (HL)
+1500   09EC AA                  XOR D
+1501   09ED DE CA               SBC A,0CAH
+1502   09EF BE                  CP (HL)
+1503   09F0 88                  ADC A,B
+1504   09F1 C0                  RET NZ
+1505   09F2 80                  ADD A,B
+1506   09F3 88                  ADC A,B
+1507   09F4 80                  ADD A,B
+1508   09F5 80                  ADD A,B
+1509   09F6 9F                  SBC A,A
+1510   09F7 C0                  RET NZ
+1511   09F8 C1                  POP BC
+1512   09F9 81                  ADD A,C
+1513   09FA CE FF               ADC A,0FFH
+1514   09FC A2                  AND D
+1515   09FD FF                  RST 38H
+1516   09FE FF                  RST 38H
+1517   09FF FF                  RST 38H
+1518   0A00 00                  NOP
+1519   0A01 FF                  RST 38H
+1520   0A02 FF                  RST 38H
+1521   0A03 FF                  RST 38H
+1522   0A04 FF                  RST 38H
+1523   0A05 FF                  RST 38H
+1524   0A06 FF                  RST 38H
+1525   0A07 FF                  RST 38H
+1526   0A08 FF                  RST 38H
+1527   0A09 FF                  RST 38H
+1528   0A0A FF                  RST 38H
+1529   0A0B FF                  RST 38H
+1530   0A0C FF                  RST 38H
+1531   0A0D FF                  RST 38H
+1532   0A0E FF                  RST 38H
+1533   0A0F FF                  RST 38H
+1534   0A10 41                  LD B,C
+1535   0A11 3E 08               LD A,08H
+1536   0A13 08                  EX AF,AF'
+1537   0A14 2A 14 22            LD HL,(2214H)
+1538   0A17 22 08 41            LD (4108H),HL
+1539   0A1A FF                  RST 38H
+1540   0A1B FF                  RST 38H
+1541   0A1C FF                  RST 38H
+1542   0A1D FF                  RST 38H
+1543   0A1E FF                  RST 38H
+1544   0A1F FF                  RST 38H
+1545   0A20 00                  NOP
+1546   0A21 FF                  RST 38H
+1547   0A22 FF                  RST 38H
+1548   0A23 FF                  RST 38H
+1549   0A24 FF                  RST 38H
+1550   0A25 FF                  RST 38H
+1551   0A26 FF                  RST 38H
+1552   0A27 FF                  RST 38H
+1553   0A28 FF                  RST 38H
+1554   0A29 FF                  RST 38H
+1555   0A2A FF                  RST 38H
+1556   0A2B FF                  RST 38H
+1557   0A2C FF                  RST 38H
+1558   0A2D FF                  RST 38H
+1559   0A2E FF                  RST 38H
+1560   0A2F FF                  RST 38H
+1561   0A30 41                  LD B,C
+1562   0A31 7F                  LD A,A
+1563   0A32 51                  LD D,C
+1564   0A33 49                  LD C,C
+1565   0A34 12                  LD (DE),A
+1566   0A35 45                  LD B,L
+1567   0A36 49                  LD C,C
+1568   0A37 09                  ADD HL,BC
+1569   0A38 49                  LD C,C
+1570   0A39 49                  LD C,C
+1571   0A3A FF                  RST 38H
+1572   0A3B FF                  RST 38H
+1573   0A3C FF                  RST 38H
+1574   0A3D FF                  RST 38H
+1575   0A3E FF                  RST 38H
+1576   0A3F FF                  RST 38H
+1577   0A40 41                  LD B,C
+1578   0A41 09                  ADD HL,BC
+1579   0A42 49                  LD C,C
+1580   0A43 41                  LD B,C
+1581   0A44 41                  LD B,C
+1582   0A45 49                  LD C,C
+1583   0A46 09                  ADD HL,BC
+1584   0A47 41                  LD B,C
+1585   0A48 08                  EX AF,AF'
+1586   0A49 7F                  LD A,A
+1587   0A4A 41                  LD B,C
+1588   0A4B 14                  INC D
+1589   0A4C 40                  LD B,B
+1590   0A4D 0C                  INC C
+1591   0A4E 08                  EX AF,AF'
+1592   0A4F 41                  LD B,C
+1593   0A50 09                  ADD HL,BC
+1594   0A51 51                  LD D,C
+1595   0A52 19                  ADD HL,DE
+1596   0A53 49                  LD C,C
+1597   0A54 7F                  LD A,A
+1598   0A55 40                  LD B,B
+1599   0A56 40                  LD B,B
+1600   0A57 38 08               JR C,L0195
+1601   0A59 78                  LD A,B
+1602   0A5A 49                  LD C,C
+1603   0A5B 00                  NOP
+1604   0A5C 09                  ADD HL,BC
+1605   0A5D FF                  RST 38H
+1606   0A5E FF                  RST 38H
+1607   0A5F FF                  RST 38H
+1608   0A60 09                  ADD HL,BC
+1609   0A61 1C          L0195:  INC E
+1610   0A62 7F                  LD A,A
+1611   0A63 08                  EX AF,AF'
+1612   0A64 2A 00 2A            LD HL,(2A00H)
+1613   0A67 3F                  CCF
+1614   0A68 7E                  LD A,(HL)
+1615   0A69 07                  RLCA
+1616   0A6A 7F                  LD A,A
+1617   0A6B 49                  LD C,C
+1618   0A6C 7C                  LD A,H
+1619   0A6D 6F                  LD L,A
+1620   0A6E 77                  LD (HL),A
+1621   0A6F 14                  INC D
+1622   0A70 3E 30               LD A,30H
+1623   0A72 24                  INC H
+1624   0A73 1C                  INC E
+1625   0A74 6F                  LD L,A
+1626   0A75 08                  EX AF,AF'
+1627   0A76 7E                  LD A,(HL)
+1628   0A77 34                  INC (HL)
+1629   0A78 5D                  LD E,L
+1630   0A79 51                  LD D,C
+1631   0A7A 59                  LD E,C
+1632   0A7B 7F                  LD A,A
+1633   0A7C 7F                  LD A,A
+1634   0A7D FF                  RST 38H
+1635   0A7E FF                  RST 38H
+1636   0A7F 7F                  LD A,A
+1637   0A80 7F                  LD A,A
+1638   0A81 FF                  RST 38H
+1639   0A82 FF                  RST 38H
+1640   0A83 FF                  RST 38H
+1641   0A84 FF                  RST 38H
+1642   0A85 FF                  RST 38H
+1643   0A86 FF                  RST 38H
+1644   0A87 FF                  RST 38H
+1645   0A88 FF                  RST 38H
+1646   0A89 FF                  RST 38H
+1647   0A8A FF                  RST 38H
+1648   0A8B FF                  RST 38H
+1649   0A8C FF                  RST 38H
+1650   0A8D FF                  RST 38H
+1651   0A8E FF                  RST 38H
+1652   0A8F FF                  RST 38H
+1653   0A90 C1                  POP BC
+1654   0A91 BE                  CP (HL)
+1655   0A92 88                  ADC A,B
+1656   0A93 88                  ADC A,B
+1657   0A94 AA                  XOR D
+1658   0A95 94                  SUB H
+1659   0A96 A2                  AND D
+1660   0A97 A2                  AND D
+1661   0A98 88                  ADC A,B
+1662   0A99 C1                  POP BC
+1663   0A9A FF                  RST 38H
+1664   0A9B FF                  RST 38H
+1665   0A9C FF                  RST 38H
+1666   0A9D FF                  RST 38H
+1667   0A9E FF                  RST 38H
+1668   0A9F FF                  RST 38H
+1669   0AA0 CB FF               SET 7,A
+1670   0AA2 FF                  RST 38H
+1671   0AA3 FF                  RST 38H
+1672   0AA4 FF                  RST 38H
+1673   0AA5 FF                  RST 38H
+1674   0AA6 FF                  RST 38H
+1675   0AA7 FF                  RST 38H
+1676   0AA8 FF                  RST 38H
+1677   0AA9 FF                  RST 38H
+1678   0AAA FF                  RST 38H
+1679   0AAB FF                  RST 38H
+1680   0AAC FF                  RST 38H
+1681   0AAD FF                  RST 38H
+1682   0AAE FF                  RST 38H
+1683   0AAF FF                  RST 38H
+1684   0AB0 C1                  POP BC
+1685   0AB1 FF                  RST 38H
+1686   0AB2 D1                  POP DE
+1687   0AB3 C9                  RET
+1688   0AB4 92                  SUB D
+1689   0AB5 C5                  PUSH BC
+1690   0AB6 C9                  RET
+1691   0AB7 89                  ADC A,C
+1692   0AB8 C9                  RET
+1693   0AB9 C9                  RET
+1694   0ABA FF                  RST 38H
+1695   0ABB FF                  RST 38H
+1696   0ABC FF                  RST 38H
+1697   0ABD FF                  RST 38H
+1698   0ABE FF                  RST 38H
+1699   0ABF FF                  RST 38H
+1700   0AC0 D3 89               OUT (89H),A
+1701   0AC2 C9                  RET
+1702   0AC3 C1                  POP BC
+1703   0AC4 C1                  POP BC
+1704   0AC5 C9                  RET
+1705   0AC6 89                  ADC A,C
+1706   0AC7 C1                  POP BC
+1707   0AC8 88                  ADC A,B
+1708   0AC9 FF                  RST 38H
+1709   0ACA C1                  POP BC
+1710   0ACB 94                  SUB H
+1711   0ACC C0                  RET NZ
+1712   0ACD 8C                  ADC A,H
+1713   0ACE 88                  ADC A,B
+1714   0ACF C1                  POP BC
+1715   0AD0 89                  ADC A,C
+1716   0AD1 D1                  POP DE
+1717   0AD2 99                  SBC A,C
+1718   0AD3 C9                  RET
+1719   0AD4 FF                  RST 38H
+1720   0AD5 C0                  RET NZ
+1721   0AD6 C0                  RET NZ
+1722   0AD7 B8                  CP B
+1723   0AD8 88                  ADC A,B
+1724   0AD9 F8                  RET M
+1725   0ADA C9                  RET
+1726   0ADB 00                  NOP
+1727   0ADC 89                  ADC A,C
+1728   0ADD FF                  RST 38H
+1729   0ADE FF                  RST 38H
+1730   0ADF FF                  RST 38H
+1731   0AE0 DB 9C               IN A,(9CH)
+1732   0AE2 FF                  RST 38H
+1733   0AE3 88                  ADC A,B
+1734   0AE4 AA                  XOR D
+1735   0AE5 80                  ADD A,B
+1736   0AE6 AA                  XOR D
+1737   0AE7 BF                  CP A
+1738   0AE8 FE 87               CP 87H
+1739   0AEA FF                  RST 38H
+1740   0AEB C9                  RET
+1741   0AEC FC EF F7            CALL M,L0196
+1742   0AEF 94                  SUB H
+1743   0AF0 BE                  CP (HL)
+1744   0AF1 B0                  OR B
+1745   0AF2 A4                  AND H
+1746   0AF3 9C                  SBC A,H
+1747   0AF4 EF                  RST 28H
+1748   0AF5 88                  ADC A,B
+1749   0AF6 FE B4               CP 0B4H
+1750   0AF8 DD                  UNRECOGNIZED
+1751   0AF9 D1                  POP DE
+1752   0AFA D9                  EXX
+1753   0AFB FF                  RST 38H
+1754   0AFC FF                  RST 38H
+1755   0AFD FF                  RST 38H
+1756   0AFE FF                  RST 38H
+1757   0AFF FF                  RST 38H
+1758   0B00 00                  NOP
+1759   0B01 FF                  RST 38H
+1760   0B02 FF                  RST 38H
+1761   0B03 FF                  RST 38H
+1762   0B04 FF                  RST 38H
+1763   0B05 FF                  RST 38H
+1764   0B06 FF                  RST 38H
+1765   0B07 FF                  RST 38H
+1766   0B08 FF                  RST 38H
+1767   0B09 FF                  RST 38H
+1768   0B0A FF                  RST 38H
+1769   0B0B FF                  RST 38H
+1770   0B0C FF                  RST 38H
+1771   0B0D FF                  RST 38H
+1772   0B0E FF                  RST 38H
+1773   0B0F FF                  RST 38H
+1774   0B10 7F                  LD A,A
+1775   0B11 08                  EX AF,AF'
+1776   0B12 08                  EX AF,AF'
+1777   0B13 14                  INC D
+1778   0B14 08                  EX AF,AF'
+1779   0B15 14                  INC D
+1780   0B16 14                  INC D
+1781   0B17 00                  NOP
+1782   0B18 64                  LD H,H
+1783   0B19 41                  LD B,C
+1784   0B1A FF                  RST 38H
+1785   0B1B FF                  RST 38H
+1786   0B1C FF                  RST 38H
+1787   0B1D FF                  RST 38H
+1788   0B1E FF                  RST 38H
+1789   0B1F FF                  RST 38H
+1790   0B20 00                  NOP
+1791   0B21 FF                  RST 38H
+1792   0B22 FF                  RST 38H
+1793   0B23 FF                  RST 38H
+1794   0B24 FF                  RST 38H
+1795   0B25 FF                  RST 38H
+1796   0B26 FF                  RST 38H
+1797   0B27 FF                  RST 38H
+1798   0B28 FF                  RST 38H
+1799   0B29 FF                  RST 38H
+1800   0B2A FF                  RST 38H
+1801   0B2B FF                  RST 38H
+1802   0B2C FF                  RST 38H
+1803   0B2D FF                  RST 38H
+1804   0B2E FF                  RST 38H
+1805   0B2F FF                  RST 38H
+1806   0B30 41                  LD B,C
+1807   0B31 40                  LD B,B
+1808   0B32 49                  LD C,C
+1809   0B33 49                  LD C,C
+1810   0B34 7F                  LD A,A
+1811   0B35 45                  LD B,L
+1812   0B36 49                  LD C,C
+1813   0B37 05                  DEC B
+1814   0B38 49                  LD C,C
+1815   0B39 49                  LD C,C
+1816   0B3A FF                  RST 38H
+1817   0B3B FF                  RST 38H
+1818   0B3C FF                  RST 38H
+1819   0B3D FF                  RST 38H
+1820   0B3E FF                  RST 38H
+1821   0B3F FF                  RST 38H
+1822   0B40 49                  LD C,C
+1823   0B41 09                  ADD HL,BC
+1824   0B42 49                  LD C,C
+1825   0B43 41                  LD B,C
+1826   0B44 22 49 09            LD (0949H),HL
+1827   0B47 49                  LD C,C
+1828   0B48 08                  EX AF,AF'
+1829   0B49 41                  LD B,C
+1830   0B4A 3F                  CCF
+1831   0B4B 22 40 02            LD (0240H),HL
+1832   0B4E 10 41               DJNZ L0197
+1833   0B50 09                  ADD HL,BC
+1834   0B51 21 29 49            LD HL,4929H
+1835   0B54 01 40 20            LD BC,2040H
+1836   0B57 40                  LD B,B
+1837   0B58 14                  INC D
+1838   0B59 08                  EX AF,AF'
+1839   0B5A 45                  LD B,L
+1840   0B5B 00                  NOP
+1841   0B5C 06 FF               LD B,0FFH
+1842   0B5E FF                  RST 38H
+1843   0B5F FF                  RST 38H
+1844   0B60 EF                  RST 28H
+1845   0B61 08                  EX AF,AF'
+1846   0B62 1C                  INC E
+1847   0B63 04                  INC B
+1848   0B64 1C                  INC E
+1849   0B65 00                  NOP
+1850   0B66 08                  EX AF,AF'
+1851   0B67 02                  LD (BC),A
+1852   0B68 20 00               JR NZ,L0198
+1853   0B6A 2A 49 2A    L0198:  LD HL,(2A49H)
+1854   0B6D 5E                  LD E,(HL)
+1855   0B6E 4A                  LD C,D
+1856   0B6F 3E 08               LD A,08H
+1857   0B71 00                  NOP
+1858   0B72 00                  NOP
+1859   0B73 3E 6F               LD A,6FH
+1860   0B75 00                  NOP
+1861   0B76 1F                  RRA
+1862   0B77 00                  NOP
+1863   0B78 55                  LD D,L
+1864   0B79 09                  ADD HL,BC
+1865   0B7A 26 7F               LD H,7FH
+1866   0B7C 22 FF FF            LD (0FFFFH),HL
+1867   0B7F 7F                  LD A,A
+1868   0B80 08                  EX AF,AF'
+1869   0B81 FF                  RST 38H
+1870   0B82 FF                  RST 38H
+1871   0B83 FF                  RST 38H
+1872   0B84 FF                  RST 38H
+1873   0B85 FF                  RST 38H
+1874   0B86 FF                  RST 38H
+1875   0B87 FF                  RST 38H
+1876   0B88 FF                  RST 38H
+1877   0B89 FF                  RST 38H
+1878   0B8A FF                  RST 38H
+1879   0B8B FF                  RST 38H
+1880   0B8C FF                  RST 38H
+1881   0B8D FF                  RST 38H
+1882   0B8E FF                  RST 38H
+1883   0B8F FF                  RST 38H
+1884   0B90 FF                  RST 38H
+1885   0B91 88          L0197:  ADC A,B
+1886   0B92 88                  ADC A,B
+1887   0B93 94                  SUB H
+1888   0B94 88                  ADC A,B
+1889   0B95 94                  SUB H
+1890   0B96 94                  SUB H
+1891   0B97 80                  ADD A,B
+1892   0B98 E4 C1 FF            CALL PO,L0199
+1893   0B9B FF                  RST 38H
+1894   0B9C FF                  RST 38H
+1895   0B9D FF                  RST 38H
+1896   0B9E FF                  RST 38H
+1897   0B9F FF                  RST 38H
+1898   0BA0 FF                  RST 38H
+1899   0BA1 FF                  RST 38H
+1900   0BA2 FF                  RST 38H
+1901   0BA3 FF                  RST 38H
+1902   0BA4 FF                  RST 38H
+1903   0BA5 FF                  RST 38H
+1904   0BA6 FF                  RST 38H
+1905   0BA7 FF                  RST 38H
+1906   0BA8 FF                  RST 38H
+1907   0BA9 FF                  RST 38H
+1908   0BAA FF                  RST 38H
+1909   0BAB FF                  RST 38H
+1910   0BAC FF                  RST 38H
+1911   0BAD FF                  RST 38H
+1912   0BAE FF                  RST 38H
+1913   0BAF FF                  RST 38H
+1914   0BB0 C1                  POP BC
+1915   0BB1 C0                  RET NZ
+1916   0BB2 C9                  RET
+1917   0BB3 C9                  RET
+1918   0BB4 FF                  RST 38H
+1919   0BB5 C5                  PUSH BC
+1920   0BB6 C9                  RET
+1921   0BB7 85                  ADD A,L
+1922   0BB8 C9                  RET
+1923   0BB9 C9                  RET
+1924   0BBA FF                  RST 38H
+1925   0BBB FF                  RST 38H
+1926   0BBC FF                  RST 38H
+1927   0BBD FF                  RST 38H
+1928   0BBE FF                  RST 38H
+1929   0BBF FF                  RST 38H
+1930   0BC0 C1                  POP BC
+1931   0BC1 89                  ADC A,C
+1932   0BC2 C9                  RET
+1933   0BC3 C1                  POP BC
+1934   0BC4 A2                  AND D
+1935   0BC5 C9                  RET
+1936   0BC6 89                  ADC A,C
+1937   0BC7 C9                  RET
+1938   0BC8 88                  ADC A,B
+1939   0BC9 C1                  POP BC
+1940   0BCA BF                  CP A
+1941   0BCB A2                  AND D
+1942   0BCC C0                  RET NZ
+1943   0BCD 82                  ADD A,D
+1944   0BCE 90                  SUB B
+1945   0BCF C1                  POP BC
+1946   0BD0 89                  ADC A,C
+1947   0BD1 A1                  AND C
+1948   0BD2 A9                  XOR C
+1949   0BD3 C9                  RET
+1950   0BD4 81                  ADD A,C
+1951   0BD5 C0                  RET NZ
+1952   0BD6 A0                  AND B
+1953   0BD7 C0                  RET NZ
+1954   0BD8 94                  SUB H
+1955   0BD9 88                  ADC A,B
+1956   0BDA C5                  PUSH BC
+1957   0BDB 00                  NOP
+1958   0BDC 86                  ADD A,(HL)
+1959   0BDD FF                  RST 38H
+1960   0BDE FF                  RST 38H
+1961   0BDF FF                  RST 38H
+1962   0BE0 DF                  RST 18H
+1963   0BE1 88                  ADC A,B
+1964   0BE2 9C                  SBC A,H
+1965   0BE3 84                  ADD A,H
+1966   0BE4 9C                  SBC A,H
+1967   0BE5 80                  ADD A,B
+1968   0BE6 88                  ADC A,B
+1969   0BE7 82                  ADD A,D
+1970   0BE8 A0                  AND B
+1971   0BE9 80                  ADD A,B
+1972   0BEA AA                  XOR D
+1973   0BEB C9                  RET
+1974   0BEC AA                  XOR D
+1975   0BED DE CA               SBC A,0CAH
+1976   0BEF BE                  CP (HL)
+1977   0BF0 88                  ADC A,B
+1978   0BF1 80                  ADD A,B
+1979   0BF2 80                  ADD A,B
+1980   0BF3 BE                  CP (HL)
+1981   0BF4 EF                  RST 28H
+1982   0BF5 80                  ADD A,B
+1983   0BF6 9F                  SBC A,A
+1984   0BF7 80                  ADD A,B
+1985   0BF8 D5                  PUSH DE
+1986   0BF9 89                  ADC A,C
+1987   0BFA A6                  AND (HL)
+1988   0BFB FF                  RST 38H
+1989   0BFC A2                  AND D
+1990   0BFD FF                  RST 38H
+1991   0BFE FF                  RST 38H
+1992   0BFF FF                  RST 38H
+1993   0C00 00                  NOP
+1994   0C01 FF                  RST 38H
+1995   0C02 FF                  RST 38H
+1996   0C03 FF                  RST 38H
+1997   0C04 FF                  RST 38H
+1998   0C05 FF                  RST 38H
+1999   0C06 FF                  RST 38H
+2000   0C07 FF                  RST 38H
+2001   0C08 FF                  RST 38H
+2002   0C09 FF                  RST 38H
+2003   0C0A FF                  RST 38H
+2004   0C0B FF                  RST 38H
+2005   0C0C FF                  RST 38H
+2006   0C0D FF                  RST 38H
+2007   0C0E FF                  RST 38H
+2008   0C0F FF                  RST 38H
+2009   0C10 00                  NOP
+2010   0C11 08                  EX AF,AF'
+2011   0C12 08                  EX AF,AF'
+2012   0C13 22 08 14            LD (1408H),HL
+2013   0C16 08                  EX AF,AF'
+2014   0C17 00                  NOP
+2015   0C18 63                  LD H,E
+2016   0C19 00                  NOP
+2017   0C1A FF                  RST 38H
+2018   0C1B FF                  RST 38H
+2019   0C1C FF                  RST 38H
+2020   0C1D FF                  RST 38H
+2021   0C1E FF                  RST 38H
+2022   0C1F FF                  RST 38H
+2023   0C20 00                  NOP
+2024   0C21 FF                  RST 38H
+2025   0C22 FF                  RST 38H
+2026   0C23 FF                  RST 38H
+2027   0C24 FF                  RST 38H
+2028   0C25 FF                  RST 38H
+2029   0C26 FF                  RST 38H
+2030   0C27 FF                  RST 38H
+2031   0C28 FF                  RST 38H
+2032   0C29 FF                  RST 38H
+2033   0C2A FF                  RST 38H
+2034   0C2B FF                  RST 38H
+2035   0C2C FF                  RST 38H
+2036   0C2D FF                  RST 38H
+2037   0C2E FF                  RST 38H
+2038   0C2F FF                  RST 38H
+2039   0C30 12                  LD (DE),A
+2040   0C31 00                  NOP
+2041   0C32 46                  LD B,(HL)
+2042   0C33 36 10               LD (HL),10H
+2043   0C35 39                  ADD HL,SP
+2044   0C36 32 03 36            LD (3603H),A
+2045   0C39 3E FF               LD A,0FFH
+2046   0C3B FF                  RST 38H
+2047   0C3C FF                  RST 38H
+2048   0C3D FF                  RST 38H
+2049   0C3E FF                  RST 38H
+2050   0C3F FF                  RST 38H
+2051   0C40 7F                  LD A,A
+2052   0C41 7E                  LD A,(HL)
+2053   0C42 36 22               LD (HL),22H
+2054   0C44 1C                  INC E
+2055   0C45 41                  LD B,C
+2056   0C46 01 7A 7F            LD BC,7F7AH
+2057   0C49 00                  NOP
+2058   0C4A 01 41 40            LD BC,4041H
+2059   0C4D 7F                  LD A,A
+2060   0C4E 7F                  LD A,A
+2061   0C4F 3E 06               LD A,06H
+2062   0C51 5E                  LD E,(HL)
+2063   0C52 46                  LD B,(HL)
+2064   0C53 31 01 3F            LD SP,3F01H
+2065   0C56 1F                  RRA
+2066   0C57 3F                  CCF
+2067   0C58 63                  LD H,E
+2068   0C59 07                  RLCA
+2069   0C5A 43                  LD B,E
+2070   0C5B 00                  NOP
+2071   0C5C 00                  NOP
+2072   0C5D FF                  RST 38H
+2073   0C5E FF                  RST 38H
+2074   0C5F FF                  RST 38H
+2075   0C60 DF                  RST 18H
+2076   0C61 00                  NOP
+2077   0C62 08                  EX AF,AF'
+2078   0C63 02                  LD (BC),A
+2079   0C64 08                  EX AF,AF'
+2080   0C65 00                  NOP
+2081   0C66 08                  EX AF,AF'
+2082   0C67 04                  INC B
+2083   0C68 10 00               DJNZ L0200
+2084   0C6A 12          L0200:  LD (DE),A
+2085   0C6B 41                  LD B,C
+2086   0C6C 01 0C 1C            LD BC,1C0CH
+2087   0C6F 14                  INC D
+2088   0C70 14                  INC D
+2089   0C71 00                  NOP
+2090   0C72 00                  NOP
+2091   0C73 7F                  LD A,A
+2092   0C74 00                  NOP
+2093   0C75 08                  EX AF,AF'
+2094   0C76 0E 00               LD C,00H
+2095   0C78 5E          L0030:  LD E,(HL)
+2096   0C79 06 50               LD B,50H
+2097   0C7B 7F                  LD A,A
+2098   0C7C 10 FF               DJNZ L0201
+2099   0C7E FF                  RST 38H
+2100   0C7F 7F                  LD A,A
+2101   0C80 1A          L0046:  LD A,(DE)
+2102   0C81 E5                  PUSH HL
+2103   0C82 17                  RLA
+2104   0C83 FE FF               CP 0FFH
+2105   0C85 CA CB 0F            JP Z,L0162
+2106   0C88 FE 64               CP 64H
+2107   0C8A CA CB 0F            JP Z,L0162
+2108   0C8D C3 89 0F            JP L0202
+2109   0C90 80                  ADD A,B
+2110   0C91 88                  ADC A,B
+2111   0C92 88                  ADC A,B
+2112   0C93 A2                  AND D
+2113   0C94 88                  ADC A,B
+2114   0C95 94                  SUB H
+2115   0C96 88                  ADC A,B
+2116   0C97 80                  ADD A,B
+2117   0C98 E3                  EX (SP),HL
+2118   0C99 80                  ADD A,B
+2119   0C9A FF                  RST 38H
+2120   0C9B FF                  RST 38H
+2121   0C9C FF                  RST 38H
+2122   0C9D FF                  RST 38H
+2123   0C9E FF                  RST 38H
+2124   0C9F FF                  RST 38H
+2125   0CA0 81                  ADD A,C
+2126   0CA1 FF                  RST 38H
+2127   0CA2 FF                  RST 38H
+2128   0CA3 FF                  RST 38H
+2129   0CA4 FF                  RST 38H
+2130   0CA5 FF                  RST 38H
+2131   0CA6 FF                  RST 38H
+2132   0CA7 FF                  RST 38H
+2133   0CA8 FF                  RST 38H
+2134   0CA9 FF                  RST 38H
+2135   0CAA FF                  RST 38H
+2136   0CAB FF                  RST 38H
+2137   0CAC FF                  RST 38H
+2138   0CAD FF                  RST 38H
+2139   0CAE FF                  RST 38H
+2140   0CAF FF                  RST 38H
+2141   0CB0 BE                  CP (HL)
+2142   0CB1 80                  ADD A,B
+2143   0CB2 C6 B6               ADD A,0B6H
+2144   0CB4 90                  SUB B
+2145   0CB5 B9                  CP C
+2146   0CB6 B2                  OR D
+2147   0CB7 83                  ADD A,E
+2148   0CB8 B6                  OR (HL)
+2149   0CB9 BE                  CP (HL)
+2150   0CBA FF                  RST 38H
+2151   0CBB FF                  RST 38H
+2152   0CBC FF                  RST 38H
+2153   0CBD FF                  RST 38H
+2154   0CBE FF                  RST 38H
+2155   0CBF FF                  RST 38H
+2156   0CC0 FF                  RST 38H
+2157   0CC1 FE B6               CP 0B6H
+2158   0CC3 A2                  AND D
+2159   0CC4 9C                  SBC A,H
+2160   0CC5 C1                  POP BC
+2161   0CC6 81                  ADD A,C
+2162   0CC7 FA FF 80            JP M,L0203
+2163   0CCA 81                  ADD A,C
+2164   0CCB C1                  POP BC
+2165   0CCC C0                  RET NZ
+2166   0CCD FF                  RST 38H
+2167   0CCE FF                  RST 38H
+2168   0CCF BE                  CP (HL)
+2169   0CD0 86                  ADD A,(HL)
+2170   0CD1 DE C6               SBC A,0C6H
+2171   0CD3 B1                  OR C
+2172   0CD4 81                  ADD A,C
+2173   0CD5 BF                  CP A
+2174   0CD6 9F                  SBC A,A
+2175   0CD7 BF                  CP A
+2176   0CD8 E3                  EX (SP),HL
+2177   0CD9 87                  ADD A,A
+2178   0CDA C3 00 80            JP L0204
+2179   0CDD FF                  RST 38H
+2180   0CDE FF                  RST 38H
+2181   0CDF FF                  RST 38H
+2182   0CE0 FF                  RST 38H
+2183   0CE1 80                  ADD A,B
+2184   0CE2 88                  ADC A,B
+2185   0CE3 82                  ADD A,D
+2186   0CE4 88                  ADC A,B
+2187   0CE5 80                  ADD A,B
+2188   0CE6 88                  ADC A,B
+2189   0CE7 84                  ADD A,H
+2190   0CE8 90                  SUB B
+2191   0CE9 80                  ADD A,B
+2192   0CEA 92                  SUB D
+2193   0CEB C1                  POP BC
+2194   0CEC 81                  ADD A,C
+2195   0CED 8C                  ADC A,H
+2196   0CEE 9C                  SBC A,H
+2197   0CEF 94                  SUB H
+2198   0CF0 94                  SUB H
+2199   0CF1 80                  ADD A,B
+2200   0CF2 80                  ADD A,B
+2201   0CF3 FF                  RST 38H
+2202   0CF4 80                  ADD A,B
+2203   0CF5 88                  ADC A,B
+2204   0CF6 8E                  ADC A,(HL)
+2205   0CF7 80                  ADD A,B
+2206   0CF8 DE 86               SBC A,86H
+2207   0CFA D0                  RET NC
+2208   0CFB FF                  RST 38H
+2209   0CFC 90                  SUB B
+2210   0CFD FE F3               CP 0F3H
+2211   0CFF FE 3A               CP 3AH
+2212   0D01 E5                  PUSH HL
+2213   0D02 17                  RLA
+2214   0D03 32 A5 16            LD (16A5H),A
+2215   0D06 FE FF               CP 0FFH
+2216   0D08 28 06               JR Z,L0205
+2217   0D0A FE 64               CP 64H
+2218   0D0C 28 05               JR Z,L0206
+2219   0D0E 18 05               JR L0207
+;----------------------------------------------------------------------
+;  END CHARACTER DEFINITIONS
+;----------------------------------------------------------------------
+
+
+2220   0D10 AF          L0205:  XOR A
+2221   0D11 18 02               JR L0207
+2222   0D13 3E 63       L0206:  LD A,63H
+2223   0D15 32 A4 16    L0207:  LD (16A4H),A
+2224   0D18 32 E5 17            LD (17E5H),A
+2225   0D1B 32 E4 17            LD (17E4H),A
+2226   0D1E CD 30 02            CALL L0039
+2227   0D21 22 C0 16            LD (16C0H),HL
+2228   0D24 3A A5 16    L0049:  LD A,(16A5H)
+2229   0D27 32 E5 17            LD (17E5H),A
+2230   0D2A C3 78 0D            JP L0026
+2231   0D2D 3A E5 17    L0047:  LD A,(17E5H)
+2232   0D30 32 A5 16            LD (16A5H),A
+2233   0D33 FE FF               CP 0FFH
+2234   0D35 28 06               JR Z,L0208
+2235   0D37 FE 64               CP 64H
+2236   0D39 28 05               JR Z,L0209
+2237   0D3B 18 05               JR L0210
+2238   0D3D AF          L0208:  XOR A
+2239   0D3E 18 02               JR L0210
+2240   0D40 3E 63       L0209:  LD A,63H
+2241   0D42 32 E5 17    L0210:  LD (17E5H),A
+2242   0D45 C3 F3 01            JP L0211
+2243   0D48 17                  RLA
+2244   0D49 FE 00               CP 00H
+2245   0D4B FA 53 0D            JP M,L0212
+2246   0D4E FE 64               CP 64H
+2247   0D50 FA 58 0D            JP M,L0213
+2248   0D53 3E 63       L0212:  LD A,63H
+2249   0D55 32 E4 17            LD (17E4H),A
+2250   0D58 C9          L0213:  RET
+2251   0D59 FF                  RST 38H
+2252   0D5A FF                  RST 38H
+2253   0D5B 1A                  LD A,(DE)
+2254   0D5C 1A                  LD A,(DE)
+2255   0D5D 1A                  LD A,(DE)
+2256   0D5E FF                  RST 38H
+2257   0D5F FF                  RST 38H
+2258   0D60 C6 C0       L0011:  ADD A,0C0H
+2259   0D62 6F                  LD L,A
+2260   0D63 3A EA 17            LD A,(17EAH)
+2261   0D66 FE FF               CP 0FFH
+2262   0D68 20 04               JR NZ,L0214
+2263   0D6A 3E 09               LD A,09H
+2264   0D6C 85                  ADD A,L
+2265   0D6D 6F                  LD L,A
+2266   0D6E C3 7C 00    L0214:  JP L0215
+2267   0D71 FF                  RST 38H
+2268   0D72 FF                  RST 38H
+2269   0D73 FF                  RST 38H
+2270   0D74 FF                  RST 38H
+2271   0D75 FF                  RST 38H
+2272   0D76 FF                  RST 38H
+2273   0D77 FF                  RST 38H
+2274   0D78 3E 00       L0026:  LD A,00H
+2275   0D7A 32 EA 17            LD (17EAH),A
+2276   0D7D C3 85 00            JP L0044
+2277   0D80 32 E8 17    L0013:  LD (17E8H),A
+2278   0D83 06 FF               LD B,0FFH
+2279   0D85 3E 20       L0217:  LD A,20H
+2280   0D87 D3 04               OUT (04H),A
+2281   0D89 CD 96 0D            CALL L0216
+2282   0D8C 3E 00               LD A,00H
+2283   0D8E D3 04               OUT (04H),A
+2284   0D90 CD 96 0D            CALL L0216
+2285   0D93 10 F0               DJNZ L0217
+2286   0D95 C9                  RET
+2287   0D96 3E 0A       L0216:  LD A,0AH
+2288   0D98 3D          L0219:  DEC A
+2289   0D99 FE 00               CP 00H
+2290   0D9B 28 03               JR Z,L0218
+2291   0D9D C3 98 0D            JP L0219
+2292   0DA0 C9          L0218:  RET
+2293   0DA1 21 FF 17            LD HL,17FFH
+2294   0DA4 F9                  LD SP,HL
+2295   0DA5 C3 78 0D            JP L0026
+2296   0DA8 CD 13 05    L0142:  CALL L0087
+2297   0DAB CD FC 06            CALL L0143
+2298   0DAE CD C3 0D            CALL L0220
+2299   0DB1 C3 87 03            JP L0094
+2300   0DB4 CD 13 05            CALL L0087
+2301   0DB7 CD FC 06            CALL L0143
+2302   0DBA CD C3 0D            CALL L0220
+2303   0DBD CD 99 07            CALL L0140
+2304   0DC0 C3 58 05            JP L0221
+2305   0DC3 21 81 17    L0220:  LD HL,1781H
+2306   0DC6 CD 4C 05            CALL L0222
+2307   0DC9 AF                  XOR A
+2308   0DCA 32 DF 17            LD (17DFH),A
+2309   0DCD C9                  RET
+2310   0DCE C9                  RET
+2311   0DCF FF                  RST 38H
+2312   0DD0 3A E5 17            LD A,(17E5H)
+2313   0DD3 32 A4 16            LD (16A4H),A
+2314   0DD6 32 A5 16            LD (16A5H),A
+2315   0DD9 CD 30 02            CALL L0039
+2316   0DDC C3 E3 01            JP L0223
+2317   0DDF AF          L0086:  XOR A
+2318   0DE0 32 A5 16            LD (16A5H),A
+2319   0DE3 21 00 10            LD HL,1000H
+2320   0DE6 22 C2 16    L0085:  LD (16C2H),HL
+2321   0DE9 C3 59 03            JP L0224
+2322   0DEC 21 00 17    L0178:  LD HL,1700H
+2323   0DEF 7E          L0226:  LD A,(HL)
+2324   0DF0 A6                  AND (HL)
+2325   0DF1 80                  ADD A,B
+2326   0DF2 20 07               JR NZ,L0225
+2327   0DF4 23                  INC HL
+2328   0DF5 7D                  LD A,L
+2329   0DF6 FE 60               CP 60H
+2330   0DF8 20 F5               JR NZ,L0226
+2331   0DFA C9                  RET
+2332   0DFB C3 46 0E    L0225:  JP L0227
+2333   0DFE C3 2E 07            JP L0228
+2334   0E01 21 40 16    L0037:  LD HL,1640H
+2335   0E04 3A E5 17            LD A,(17E5H)
+2336   0E07 85                  ADD A,L
+2337   0E08 6F                  LD L,A
+2338   0E09 3A 6F 17            LD A,(176FH)
+2339   0E0C 77                  LD (HL),A
+2340   0E0D C3 23 0F            JP L0229
+2341   0E10 3A 6F 17    L0036:  LD A,(176FH)
+2342   0E13 32 E6 17            LD (17E6H),A
+2343   0E16 AF                  XOR A
+2344   0E17 32 A6 16            LD (16A6H),A
+2345   0E1A C3 99 01            JP L0230
+2346   0E1D 3E FF               LD A,0FFH
+2347   0E1F 32 E9 17            LD (17E9H),A
+2348   0E22 32 A6 16            LD (16A6H),A
+
+						; Copy " MOVING SPEEDr  " into RAM
+2349   0E25 21 36 0E            LD HL,0E36H     ; PROM start address
+2350   0E28 11 60 17            LD DE,1760H	; RAM start address
+2351   0E2B 01 10 00            LD BC,0010H	; string length (16 bytes)
+2352   0E2E ED B0               LDIR		; start block copy
+2353   0E30 C3 65 0F            JP L0231	; 
+2354   0E33 C3 78 0D    L0252:  JP L0026
+
+
+2355   0E36-0E45	; string, " MOVING SPEEDr  "
+
+
+2368   0E46 3A 5B 17    L0227:  LD A,(175BH) 	; load the contents of memory $175B to A
+2369   0E49 E6 80               AND 80H     	 ; A ^ $80
+2370   0E4B FE 00               CP 00H 
+2371   0E4D 28 04               JR Z,L0234  	 
+2372   0E4F AF                  XOR A
+2373   0E50 32 DF 17            LD (17DFH),A
+2374   0E53 3A 55 17    L0234:  LD A,(1755H)	; load the contents of memory $1755 to A
+2375   0E56 E6 80               AND 80H		; A ^ $80
+2376   0E58 FE 00               CP 00H          
+2377   0E5A 28 04               JR Z,L0235	
+2378   0E5C AF                  XOR A
+2379   0E5D 32 D9 17            LD (17D9H),A
+2380   0E60 21 E0 17    L0235:  LD HL,17E0H	; load the contents of memory $17E0H to HL
+2381   0E63 C3 2E 07            JP L0228
+
+;----------------------------------------------------------------------------------------------------
+;
+;                START UP ROUTINE (check memory, initialize memory if it was lost)
+;
+;----------------------------------------------------------------------------------------------------
+
+						; check if the memory has already been initialized
+						; (i.e. is the memory battery working?)
+2382   0E66 3A A8 16    *INIT*:  LD A,(16A8H)    ; A = ($16A8)
+2383   0E69 FE AA               CP 0AAH		; compare A to $0AA
+2384   0E6B 20 1B               JR NZ,*INITMEM*     ; if they are unequal go to *INITMEM* (initialize memory)
+2385   0E6D 3A A9 16            LD A,(16A9H)
+2386   0E70 20 AA               JR NZ,L0237
+2387   0E72 20 14               JR NZ,*INITMEM*
+2388   0E74 21 B7 0E            LD HL,0EB7H
+2389   0E77 11 60 17            LD DE,1760H
+2390   0E7A 01 10 00            LD BC,0010H
+2391   0E7D ED B0               LDIR
+2392   0E7F CD BC 02            CALL *LOADCHARS*
+2393   0E82 CD 82 07            CALL L0238
+2394   0E85 C3 47 03    L0232:  JP L0079
+
+	;-----------------------------------------------------------------
+	;              INITIALIZE MEMORY AND DISPLAY "CONTENTS LOST"
+	;-----------------------------------------------------------------
+
+
+2395   0E88 CD 7B 02    *INITMEM*:  CALL *CLEARMEM*	; clear the memory and initialize a few addresses
+2396   0E8B 3E AA               LD A,0AAH	
+2397   0E8D 32 A8 16            LD (16A8H),A	; ($16A8) = $0AA, this is what the startup routine checks
+						; for being set to see if the RAM was reset since last startup
+
+2398   0E90 32 A9 16            LD (16A9H),A	; ($16A9) = $0AA
+
+						; copy " CONTENTS LOSTt " into memory
+2399   0E93 21 C7 0E            LD HL,0EC7H	; HL = $EC7, PROM start location
+2400   0E96 11 60 17            LD DE,1760H	; DE = $1760, the memory location to move the string to
+2401   0E99 01 10 00            LD BC,0010H	; BC = $10, length of string (16 characters)
+2402   0E9C ED B0               LDIR		; run block transfer 
+2403   0E9E CD BC 02            CALL *LOADCHARS*	; load character definitions to memory (16 characters)
+2404   0EA1 CD 82 07            CALL L0238
+
+2405   0EA4 06 60       L0240:  LD B,60H
+2406   0EA6 21 80 17            LD HL,1780H
+2407   0EA9 3E FF       L0239:  LD A,0FFH
+2408   0EAB AE                  XOR (HL)
+2409   0EAC 77                  LD (HL),A
+2410   0EAD 23                  INC HL
+2411   0EAE 10 F9               DJNZ L0239
+2412   0EB0 81                  ADD A,C
+2413   0EB1 82                  ADD A,D
+2414   0EB2 07                  RLCA
+2415   0EB3 18 EF               JR L0240
+2416   0EB5 FF                  RST 38H
+2417   0EB6 FF                  RST 38H
+2418   0EB7 20 70               JR NZ,L0241
+2419   0EB9-0EBE		"TENICA"
+2425   0EBF 20 50               JR NZ,L0242
+2426   0EC1 12                  LD (DE),A
+2427   0EC2 31 30 31            LD SP,3130H
+2428   0EC5 70                  LD (HL),B
+2429   0EC6-0ED4		"  CONTENTS LOST"
+2442   0ED5 74                  LD (HL),H
+2443   0ED6 20 32               JR NZ,L0245
+2444   0ED8 E1                  POP HL
+2445   0ED9 17                  RLA
+2446   0EDA 21 AA 16            LD HL,16AAH
+2447   0EDD BE                  CP (HL)
+2448   0EDE 20 0E               JR NZ,L0246
+2449   0EE0 23                  INC HL
+2450   0EE1 3A E7 17            LD A,(17E7H)
+2451   0EE4 BE                  CP (HL)
+2452   0EE5 20 07               JR NZ,L0246
+2453   0EE7 06 4F               LD B,4FH
+2454   0EE9 10 FE               DJNZ L0247
+2455   0EEB C3 0B 0F            JP L0014
+2456   0EEE 3A E1 17    L0246:  LD A,(17E1H)
+2457   0EF1 32 AA 16            LD (16AAH),A
+2458   0EF4 3A E7 17            LD A,(17E7H)
+2459   0EF7 32 AB 16            LD (16ABH),A
+2460   0EFA C3 53 00            JP L0248
+2461   0EFD 21 E7 17    L0006:  LD HL,17E7H
+2462   0F00 3A AB 16            LD A,(16ABH)
+2463   0F03 BE                  CP (HL)
+2464   0F04 20 05               JR NZ,L0014
+2465   0F06 3E FF               LD A,0FFH
+2466   0F08 32 AA 16            LD (16AAH),A
+2467   0F0B 21 E7 17    L0014:  LD HL,17E7H
+2468   0F0E 35                  DEC (HL)
+2469   0F0F C3 15 00            JP L0007
+2470   0F12 21 60 17            LD HL,1760H
+2471   0F15 11 B0 16            LD DE,16B0H
+2472   0F18 01 10 00            LD BC,0010H
+2473   0F1B ED B0               LDIR
+2474   0F1D C3 71 0F            JP L0249
+2475   0F20 C3 78 01            JP L0250
+2476   0F23 3A E5 17    L0229:  LD A,(17E5H)
+2477   0F26 FE FF               CP 0FFH
+2478   0F28 28 10               JR Z,L0251
+2479   0F2A FE 64               CP 64H
+2480   0F2C 28 0C               JR Z,L0251
+2481   0F2E CD 30 02            CALL L0039
+2482   0F31 EB                  EX DE,HL
+2483   0F32 01 10 00            LD BC,0010H
+2484   0F35 21 B0 16            LD HL,16B0H
+2485   0F38 ED B0               LDIR
+2486   0F3A C3 99 01    L0251:  JP L0230
+2487   0F3D 21 AA 16    L0119:  LD HL,16AAH
+2488   0F40 16 BF               LD D,0BFH
+2489   0F42 23                  INC HL
+2490   0F43 36 05               LD (HL),05H
+2491   0F45 3A C2 16            LD A,(16C2H)
+2492   0F48 1F                  RRA
+2493   0F49 1F                  RRA
+2494   0F4A 1F                  RRA
+2495   0F4B 1F                  RRA
+2496   0F4C E6 0F               AND 0FH
+2497   0F4E 32 AC 16            LD (16ACH),A
+2498   0F51 3A C3 16            LD A,(16C3H)
+2499   0F54 17                  RLA
+2500   0F55 17                  RLA
+2501   0F56 17                  RLA
+2502   0F57 17                  RLA
+2503   0F58 E6 F0               AND 0F0H
+2504   0F5A 21 AC 16            LD HL,16ACH
+2505   0F5D B6                  OR (HL)
+2506   0F5E 3D                  DEC A
+2507   0F5F 32 E5 17            LD (17E5H),A
+2508   0F62 C3 37 01            JP L0040
+2509   0F65 3A E6 17    L0231:  LD A,(17E6H)
+2510   0F68 32 6F 17            LD (176FH),A
+2511   0F6B CD BC 02            CALL *LOADCHARS*
+2512   0F6E C3 33 0E            JP L0252
+2513   0F71 21 40 16    L0249:  LD HL,1640H
+2514   0F74 3A E5 17            LD A,(17E5H)
+2515   0F77 85                  ADD A,L
+2516   0F78 6F                  LD L,A
+2517   0F79 7E                  LD A,(HL)
+2518   0F7A 32 6F 17            LD (176FH),A
+2519   0F7D 21 C0 01            LD HL,01C0H
+2520   0F80 C3 78 01            JP L0250
+
+; *CLEAR*		
+; CLEARS MEMORY (sets BC memory bytes to $00 starting at HL)
+; ---------------------------------------------------------
+2521   0F83 36 00       *CLEAR*:  LD (HL),00H	; set memory address in HL to zero
+2522   0F85 23                  INC HL		; look at next memory address
+2523   0F86 10 FB               DJNZ *CLEAR*	; decrement B by one, repeat clearing until B is zero
+2524   0F88 C9                  RET		; return
+
+2525   0F89 3A E5 17    L0202:  LD A,(17E5H)
+2526   0F8C 32 AD 16            LD (16ADH),A
+2527   0F8F 3E 63               LD A,63H
+2528   0F91 32 E5 17            LD (17E5H),A
+2529   0F94 21 AD 16            LD HL,16ADH
+2530   0F97 BE                  CP (HL)
+2531   0F98 28 31               JR Z,L0162
+2532   0F9A 21 E5 17    L0253:  LD HL,17E5H
+2533   0F9D 35                  DEC (HL)
+2534   0F9E CD 30 02            CALL L0039
+2535   0FA1 5D                  LD E,L
+2536   0FA2 54                  LD D,H
+2537   0FA3 01 10 00            LD BC,0010H
+2538   0FA6 09                  ADD HL,BC
+2539   0FA7 EB                  EX DE,HL
+2540   0FA8 ED B0               LDIR
+2541   0FAA 21 40 16            LD HL,1640H
+2542   0FAD 3A E5 17            LD A,(17E5H)
+2543   0FB0 85                  ADD A,L
+2544   0FB1 6F                  LD L,A
+2545   0FB2 7E                  LD A,(HL)
+2546   0FB3 23                  INC HL
+2547   0FB4 77                  LD (HL),A
+2548   0FB5 3A AD 16            LD A,(16ADH)
+2549   0FB8 21 E5 17            LD HL,17E5H
+2550   0FBB BE                  CP (HL)
+2551   0FBC 20 DC               JR NZ,L0253
+2552   0FBE CD 30 02            CALL L0039
+2553   0FC1 06 10               LD B,10H
+2554   0FC3 36 20       L0254:  LD (HL),20H
+2555   0FC5 23                  INC HL
+2556   0FC6 10 FB               DJNZ L0254
+2557   0FC8 C3 4E 01            JP L0255
+2558   0FCB 0E 10       L0162:  LD C,10H
+2559   0FCD CD 80 0D            CALL L0013
+2560   0FD0 01 20 FA            LD BC,0FA20H
+2561   0FD3 C3 78 0D            JP L0026
+2562   0FD6 21 41 16    L0183:  LD HL,1641H
+2563   0FD9 3A AD 16            LD A,(16ADH)
+2564   0FDC 85                  ADD A,L
+2565   0FDD 6F                  LD L,A
+2566   0FDE 7E                  LD A,(HL)
+2567   0FDF 2B                  DEC HL
+2568   0FE0 27                  DAA
+2569   0FE1 21 AD 16            LD HL,16ADH
+2570   0FE4 34                  INC (HL)
+2571   0FE5 D9                  EXX
+2572   0FE6 7D                  LD A,L
+2573   0FE7 FE 40               CP 40H
+2574   0FE9 20 0C               JR NZ,L0256
+2575   0FEB 7C                  LD A,H
+2576   0FEC FE 16               CP 16H
+2577   0FEE 20 07               JR NZ,L0256
+2578   0FF0 21 E5 17            LD HL,17E5H
+2579   0FF3 35                  DEC (HL)
+2580   0FF4 C3 37 01            JP L0040
+2581   0FF7 01 10 00    L0256:  LD BC,0010H
+2582   0FFA C3 F2 07            JP L0257
+2583   0FFD FF                  RST 38H
+2584   0FFE FF                  RST 38H
+2585   0FFF FF                  RST 38H
+
+---------------------------------------------
+LIST OF LABELS
+Sorted by address:      Sorted by name:
+---------------------------------------------
+
+L0033:  0007            L0001:  0344
+L0002:  0010            L0002:  0010
+L0007:  0015            L0003:  003B
+L0003:  003B            L0004:  0ED7
+L0005:  0044            L0005:  0044
+L0248:  0053            L0006:  0EFD
+L0009:  005F            L0007:  0015
+L0008:  0066            L0008:  0066
+L0215:  007C            L0009:  005F
+L0010:  0082            L0010:  0082
+L0044:  0085            L0011:  0D60
+L0012:  0090            L0012:  0090
+L0015:  0099            L0013:  0D80
+L0020:  00A7            L0014:  0F0B
+L0018:  00AD            L0015:  0099
+L0016:  00B1            L0016:  00B1
+L0017:  00C1            L0017:  00C1
+L0019:  00D2            L0018:  00AD
+L0022:  00E1            L0019:  00D2
+L0185:  0114            L0020:  00A7
+L0040:  0137            L0021:  02A2
+L0255:  014E            L0022:  00E1
+L0031:  015F            L0023:  02BC
+L0024:  0161            L0024:  0161
+L0250:  0178            L0025:  0E1D
+L0230:  0199            L0026:  0D78
+L0035:  019F            L0027:  0638
+L0038:  01B6            L0028:  0262
+L0223:  01E3            L0029:  0300
+L0043:  01F0            L0030:  0C78
+L0211:  01F3            L0031:  015F
+L0048:  0201            *CLEARMEM*:  027B
+L0041:  0206            L0033:  0007
+L0042:  0217            L0034:  0F12
+L0077:  0224            L0035:  019F
+L0039:  0230            L0036:  0E10
+L0050:  0232            L0037:  0E01
+L0061:  023D            L0038:  01B6
+L0053:  023F            L0039:  0230
+L0054:  0241            L0040:  0137
+L0184:  0249            L0041:  0206
+L0058:  024F            L0042:  0217
+L0059:  0252            L0043:  01F0
+L0062:  025C            L0044:  0085
+L0028:  0262            L0045:  0D00
+L0051:  0269            L0046:  0C80
+L0056:  026C            L0047:  0D2D
+L0060:  026E            L0048:  0201
+L0063:  0275            L0049:  0D24
+*CLEARMEM*:  027B            L0050:  0232
+L0065:  0281            L0051:  0269
+L0052:  028C            L0052:  028C
+L0066:  0291            L0053:  023F
+L0055:  0293            L0054:  0241
+L0057:  029C            L0055:  0293
+L0021:  02A2            L0056:  026C
+L0067:  02B9            L0057:  029C
+L0023:  02BC            L0058:  024F
+L0071:  02C7            L0059:  0252
+L0069:  02D9            L0060:  026E
+L0068:  02E5            L0061:  023D
+L0070:  02F4            L0062:  025C
+L0029:  0300            L0063:  0275
+L0072:  031B            L0064:  0F83
+L0073:  0320            L0065:  0281
+L0074:  032A            L0066:  0291
+L0075:  032F            L0067:  02B9
+L0076:  0337            L0068:  02E5
+L0001:  0344            L0069:  02D9
+L0079:  0347            L0070:  02F4
+L0111:  0353            L0071:  02C7
+L0224:  0359            L0072:  031B
+L0181:  0361            L0073:  0320
+L0094:  0387            L0074:  032A
+L0081:  03A2            L0075:  032F
+L0083:  03BA            L0076:  0337
+L0099:  03F9            L0077:  0224
+L0100:  03FC            *INIT*:  0E66
+L0110:  0423            L0079:  0347
+L0129:  042A            L0080:  0555
+L0104:  042F            L0081:  03A2
+L0105:  0431            L0082:  0576
+L0109:  043F            L0083:  03BA
+L0120:  0454            L0084:  056D
+L0102:  0459            L0085:  0DE6
+L0107:  045C            L0086:  0DDF
+L0113:  0463            L0087:  0513
+L0116:  0465            L0088:  0764
+L0114:  0467            L0089:  078B
+L0101:  0469            L0090:  0582
+L0115:  046B            L0091:  072B
+L0117:  046D            L0092:  0549
+L0103:  0472            L0093:  0507
+L0106:  0479            L0094:  0387
+L0118:  047B            L0095:  05FD
+L0108:  0482            L0096:  064F
+L0112:  0489            L0097:  0581
+L0132:  0492            L0098:  068F
+L0128:  0497            L0099:  03F9
+L0121:  04C3            L0100:  03FC
+L0124:  04C5            L0101:  0469
+L0122:  04C7            L0102:  0459
+L0125:  04C9            L0103:  0472
+L0123:  04CB            L0104:  042F
+L0126:  04CD            L0105:  0431
+L0127:  04DB            L0106:  0479
+L0131:  04E9            L0107:  045C
+L0130:  04F7            L0108:  0482
+L0134:  04F8            L0109:  043F
+L0133:  0506            L0110:  0423
+L0093:  0507            L0111:  0353
+L0135:  050E            L0112:  0489
+L0087:  0513            L0113:  0463
+L0137:  0527            L0114:  0467
+L0136:  0533            L0115:  046B
+L0138:  0548            L0116:  0465
+L0092:  0549            L0117:  046D
+L0222:  054C            L0118:  047B
+L0080:  0555            L0119:  0F3D
+L0221:  0558            L0120:  0454
+L0144:  055B            L0121:  04C3
+L0084:  056D            L0122:  04C7
+L0082:  0576            L0123:  04CB
+L0097:  0581            L0124:  04C5
+L0090:  0582            L0125:  04C9
+L0147:  0584            L0126:  04CD
+L0148:  0597            L0127:  04DB
+L0145:  059F            L0128:  0497
+L0146:  05AA            L0129:  042A
+L0153:  05B1            L0130:  04F7
+L0152:  05C5            L0131:  04E9
+L0150:  05CB            L0132:  0492
+L0151:  05DA            L0133:  0506
+L0149:  05E3            L0134:  04F8
+L0155:  05EE            L0135:  050E
+L0154:  05FC            L0136:  0533
+L0095:  05FD            L0137:  0527
+L0160:  0603            L0138:  0548
+L0159:  0617            L0139:  06CF
+L0157:  061D            L0140:  0799
+L0158:  062C            L0141:  0D04
+L0156:  0635            L0142:  0DA8
+L0027:  0638            L0143:  06FC
+L0096:  064F            L0144:  055B
+L0169:  065C            L0145:  059F
+L0168:  0670            L0146:  05AA
+L0166:  0676            L0147:  0584
+L0167:  0685            L0148:  0597
+L0165:  068E            L0149:  05E3
+L0098:  068F            L0150:  05CB
+L0174:  069C            L0151:  05DA
+L0173:  06B0            L0152:  05C5
+L0171:  06B6            L0153:  05B1
+L0172:  06C5            L0154:  05FC
+L0170:  06CE            L0155:  05EE
+L0139:  06CF            L0156:  0635
+L0176:  06D8            L0157:  061D
+L0175:  06FB            L0158:  062C
+L0143:  06FC            L0159:  0617
+L0177:  0702            L0160:  0603
+L0091:  072B            L0161:  07F8
+L0228:  072E            L0162:  0FCB
+L0088:  0764            L0163:  07D7
+L0238:  0782            L0164:  21C9
+L0089:  078B            L0165:  068E
+L0140:  0799            L0166:  0676
+L0180:  07A4            L0167:  0685
+L0179:  07C4            L0168:  0670
+L0163:  07D7            L0169:  065C
+L0182:  07E2            L0170:  06CE
+L0257:  07F2            L0171:  06B6
+L0161:  07F8            L0172:  06C5
+L0188:  086A            L0173:  06B0
+L0187:  086D            L0174:  069C
+L0186:  08CB            L0175:  06FB
+L0189:  08FB            L0176:  06D8
+L0192:  096A            L0177:  0702
+L0191:  096D            L0178:  0DEC
+L0195:  0A61            L0179:  07C4
+L0198:  0B6A            L0180:  07A4
+L0197:  0B91            L0181:  0361
+L0200:  0C6A            L0182:  07E2
+L0030:  0C78            L0183:  0FD6
+L0201:  0C7D            L0184:  0249
+L0046:  0C80            L0185:  0114
+L0045:  0D00            L0186:  08CB
+L0141:  0D04            L0187:  086D
+L0205:  0D10            L0188:  086A
+L0206:  0D13            L0189:  08FB
+L0207:  0D15            L0190:  98A2
+L0049:  0D24            L0191:  096D
+L0047:  0D2D            L0192:  096A
+L0208:  0D3D            L0193:  C1E1
+L0209:  0D40            L0194:  C989
+L0210:  0D42            L0195:  0A61
+L0212:  0D53            L0196:  F7EF
+L0213:  0D58            L0197:  0B91
+L0011:  0D60            L0198:  0B6A
+L0214:  0D6E            L0199:  FFC1
+L0026:  0D78            L0200:  0C6A
+L0013:  0D80            L0201:  0C7D
+L0217:  0D85            L0202:  0F89
+L0216:  0D96            L0203:  80FF
+L0219:  0D98            L0204:  8000
+L0218:  0DA0            L0205:  0D10
+L0142:  0DA8            L0206:  0D13
+L0220:  0DC3            L0207:  0D15
+L0086:  0DDF            L0208:  0D3D
+L0085:  0DE6            L0209:  0D40
+L0178:  0DEC            L0210:  0D42
+L0226:  0DEF            L0211:  01F3
+L0225:  0DFB            L0212:  0D53
+L0037:  0E01            L0213:  0D58
+L0036:  0E10            L0214:  0D6E
+L0237:  0E1C            L0215:  007C
+L0025:  0E1D            L0216:  0D96
+L0252:  0E33            L0217:  0D85
+L0227:  0E46            L0218:  0DA0
+L0234:  0E53            L0219:  0D98
+L0235:  0E60            L0220:  0DC3
+*INIT*:  0E66            L0221:  0558
+L0232:  0E85            L0222:  054C
+*INITMEM*:  0E88            L0223:  01E3
+L0233:  0E92            L0224:  0359
+L0240:  0EA4            L0225:  0DFB
+L0239:  0EA9            L0226:  0DEF
+L0004:  0ED7            L0227:  0E46
+L0243:  0EE8            L0228:  072E
+L0247:  0EE9            L0229:  0F23
+L0246:  0EEE            L0230:  0199
+L0006:  0EFD            L0231:  0F65
+L0245:  0F0A            L0232:  0E85
+L0014:  0F0B            L0233:  0E92
+L0242:  0F11            L0234:  0E53
+L0034:  0F12            L0235:  0E60
+L0244:  0F1E            *INITMEM*:  0E88
+L0229:  0F23            L0237:  0E1C
+L0241:  0F29            L0238:  0782
+L0251:  0F3A            L0239:  0EA9
+L0119:  0F3D            L0240:  0EA4
+L0231:  0F65            L0241:  0F29
+L0249:  0F71            L0242:  0F11
+L0064:  0F83            L0243:  0EE8
+L0202:  0F89            L0244:  0F1E
+L0253:  0F9A            L0245:  0F0A
+L0254:  0FC3            L0246:  0EEE
+L0162:  0FCB            L0247:  0EE9
+L0183:  0FD6            L0248:  0053
+L0256:  0FF7            L0249:  0F71
+L0164:  21C9            L0250:  0178
+L0204:  8000            L0251:  0F3A
+L0203:  80FF            L0252:  0E33
+L0190:  98A2            L0253:  0F9A
+L0193:  C1E1            L0254:  0FC3
+L0194:  C989            L0255:  014E
+L0196:  F7EF            L0256:  0FF7
+L0199:  FFC1            L0257:  07F2
